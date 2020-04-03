@@ -12,7 +12,7 @@ namespace Model {
 static constexpr unsigned int TEST_TABLE_HEIGHT = 10;
 static constexpr unsigned int TEST_TABLE_WIDTH = 15;
 
-class ModelTestFixture : public ::testing::Test {
+class TableTestFixture : public ::testing::Test {
 protected:
     void SetUp() override {
         testTable = make_unique<Table>(TEST_TABLE_HEIGHT, TEST_TABLE_WIDTH);
@@ -24,12 +24,12 @@ protected:
     unique_ptr<Table> testTable;
 };
 
-TEST_F(ModelTestFixture, testTableSizeGetters) {
+TEST_F(TableTestFixture, testTableSizeGetters) {
     EXPECT_EQ(10, testTable->GetHeight());
     EXPECT_EQ(15, testTable->GetWidth());
 }
 
-TEST_F(ModelTestFixture, testFieldAccessorsValid) {
+TEST_F(TableTestFixture, testFieldAccessorsValid) {
     EXPECT_EQ(testTable->GetField(1, 5), FieldType::EMPTY);
 
     testTable->SetField(1, 5, FieldType::FOOD);
@@ -37,12 +37,12 @@ TEST_F(ModelTestFixture, testFieldAccessorsValid) {
     EXPECT_EQ(testTable->GetField(1, 5), FieldType::FOOD);
 }
 
-TEST_F(ModelTestFixture, testFieldAccessorsException) {
+TEST_F(TableTestFixture, testFieldAccessorsException) {
     EXPECT_THROW(testTable->SetField(32, 0, FieldType::FOOD), out_of_range);
     EXPECT_THROW(testTable->GetField(32, 0), out_of_range);
 }
 
-TEST_F(ModelTestFixture, testFoodGenerator) {
+TEST_F(TableTestFixture, testFoodGenerator) {
     testTable->GenerateFood();
 
     int FoodCount = 0;

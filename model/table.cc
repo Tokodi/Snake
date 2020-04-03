@@ -59,8 +59,8 @@ void Table::DebugPrint() const {
 }
 
 void Table::GenerateFood() {
-    unsigned int x = GetRandomNumber(0, _width);
-    unsigned int y = GetRandomNumber(0, _height);
+    unsigned int x = GetRandomNumber(0, _width - 1);
+    unsigned int y = GetRandomNumber(0, _height - 1);
 
     SetField(x, y, FieldType::FOOD);
 }

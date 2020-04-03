@@ -1,6 +1,7 @@
 set(LIB_NAME model)
 
 add_library(${LIB_NAME} STATIC
+    snake.cc
     table.cc
 )
 

@@ -2,6 +2,7 @@ set(TEST_NAME test_snake_model)
 
 add_executable(${TEST_NAME}
     test_main.cc
+    test_snake.cc
     test_table.cc
 )
 
