@@ -1,6 +1,8 @@
 set(LIB_NAME model)
 
 add_library(${LIB_NAME} STATIC
+    food.cc
+    game.cc
     snake.cc
     table.cc
 )

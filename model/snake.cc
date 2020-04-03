@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+using std::deque;
+
 namespace Snake {
 namespace Model {
 
 Snake::Snake(int startPosX, int startPosY)
-    : _currentDirection(Direction::RIGHT),
+    : _currentDirection(START_DIRECTION),
       _isAlive(true) {
     Initialize(startPosX, startPosY);
 }
@@ -42,6 +44,7 @@ void Snake::Move() {
     }
 
     _body.emplace_front(newHead);
+    _trailPosition = _body.back();
     _body.pop_back();
 }
 
@@ -53,12 +56,27 @@ void Snake::Grow() {
     _body.push_back(_body.back());
 }
 
+bool Snake::IsSelfHarm() const {
+    //TODO: This could surely be done better...
+    int count = 0;
+    const Position& head = _body.front();
+    for (auto const& bodyPart : _body) {
+        if (bodyPart == head) ++count;
+    }
+
+    return count == 1 ? false : true;
+}
+
 const Position& Snake::GetHeadPosition() const {
     return _body.front();
 }
 
 const Position& Snake::GetTailPosition() const {
     return _body.back();
+}
+
+const Position& Snake::GetTrailPosition() const {
+    return _trailPosition;
 }
 
 bool Snake::IsAlive() const {

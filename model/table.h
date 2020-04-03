@@ -6,6 +6,8 @@
 namespace Snake {
 namespace Model {
 
+using Position = std::pair<int, int>;
+
 enum class FieldType { EMPTY, SNAKE, FOOD };
 
 class Table {
@@ -15,17 +17,16 @@ public:
     unsigned int GetHeight() const;
     unsigned int GetWidth() const;
 
-    void SetField(unsigned int x, unsigned int y, FieldType fieldType);
-    FieldType GetField(unsigned int x, unsigned int y) const;
+    bool IsInside(const Position& position) const;
 
-    void GenerateFood();
+    void SetField(Position position, FieldType fieldType);
+    FieldType GetField(Position position) const;
 
     //TODO: remove
     void DebugPrint() const;
 
 private:
     void Initialize();
-    int GetRandomNumber(int min, int max);
 
     const unsigned int _height;
     const unsigned int _width;

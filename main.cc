@@ -1,9 +1,14 @@
-#include "table.h"
+#include "game.h"
+
+#include <iostream>
 
 int main() {
-    Snake::Model::Table myTable(10,20);
-    myTable.SetField(3, 3, Snake::Model::FieldType::FOOD);
-    myTable.DebugPrint();
+    Snake::Model::Game myGame;
+    myGame.Initialize(10, 10);
+    while (!myGame.IsGameOver()) {
+        myGame.GameLoop();
+        std::cout << std::endl;
+    }
 
     return 0;
 }

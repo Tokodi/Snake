@@ -6,6 +6,8 @@ using std::make_unique;
 using std::unique_ptr;
 using std::out_of_range;
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 
@@ -30,31 +32,16 @@ TEST_F(TableTestFixture, testTableSizeGetters) {
 }
 
 TEST_F(TableTestFixture, testFieldAccessorsValid) {
-    EXPECT_EQ(testTable->GetField(1, 5), FieldType::EMPTY);
+    EXPECT_EQ(testTable->GetField(Position(1, 5)), FieldType::EMPTY);
 
-    testTable->SetField(1, 5, FieldType::FOOD);
+    testTable->SetField(Position(1, 5), FieldType::FOOD);
 
-    EXPECT_EQ(testTable->GetField(1, 5), FieldType::FOOD);
+    EXPECT_EQ(testTable->GetField(Position(1, 5)), FieldType::FOOD);
 }
 
 TEST_F(TableTestFixture, testFieldAccessorsException) {
-    EXPECT_THROW(testTable->SetField(32, 0, FieldType::FOOD), out_of_range);
-    EXPECT_THROW(testTable->GetField(32, 0), out_of_range);
-}
-
-TEST_F(TableTestFixture, testFoodGenerator) {
-    testTable->GenerateFood();
-
-    int FoodCount = 0;
-    for (int x = 0; x < TEST_TABLE_WIDTH; ++x) {
-        for (int y = 0; y < TEST_TABLE_HEIGHT; ++y) {
-            if (testTable->GetField(x, y) == FieldType::FOOD) {
-                ++FoodCount;
-            }
-        }
-    }
-
-    EXPECT_EQ(1, FoodCount);
+    EXPECT_THROW(testTable->SetField(Position(32, 0), FieldType::FOOD), out_of_range);
+    EXPECT_THROW(testTable->GetField(Position(0, 32)), out_of_range);
 }
 
 } // ns Model
