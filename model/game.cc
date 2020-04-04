@@ -1,7 +1,6 @@
 #include "game.h"
 
 #include <chrono>
-#include <iostream>
 #include <random>
 
 using std::make_unique;
@@ -10,6 +9,8 @@ using std::uniform_int_distribution;
 
 namespace Snake {
 namespace Model {
+
+//TODO: Handle exceptions
 
 Game::Game()
     : _isInitialized(false),
@@ -29,17 +30,17 @@ void Game::Initialize(unsigned int tableWidth, unsigned int tableHeight) {
 }
 
 void Game::GameLoop() {
+    if (_isGameOver || !_isInitialized)
+        return;
+
     if (!_food) {
         CreateFood();
         AddFoodToTable();
     }
 
-    //TODO: Remove
-    _table->DebugPrint();
-
     _snake->Move();
 
-    if (_snake->IsAlive() || !_table->IsInside(_snake->GetHeadPosition())) {
+    if (!_snake->IsAlive() || !_table->IsInside(_snake->GetHeadPosition())) {
         _isGameOver = true;
         return;
     }
@@ -51,6 +52,16 @@ void Game::GameLoop() {
     }
 
     UpdateSnakeOnTable();
+
+    //TODO: Remove
+    _table->DebugPrint();
+}
+
+void Game::ChangeSnakeDirection(Direction newDirection) const {
+    if (!_snake->IsAlive())
+        return;
+
+    _snake->ChangeDirection(newDirection);
 }
 
 bool Game::IsGameOver() const {
@@ -66,21 +77,17 @@ void Game::CreateGameTable(unsigned int width, unsigned int height) {
 }
 
 void Game::CreateSnake() {
-    //TODO: use SNAKE_START_POS_X, SNAKE_START_POS_Y
-    _snake = make_unique<Snake>(0, 0);
+    _snake = make_unique<Snake>(SNAKE_START_POS_X, SNAKE_START_POS_Y);
 }
 
-//TODO: Handle exception
 void Game::PlaceSnakeOnTable() {
-    //TODO: This only works with the fixed 2 start length
-    //Guess snakes born that way...
     _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
     _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
 }
 
 void Game::UpdateSnakeOnTable() {
-    std::cout << "OOPS" << std::endl;
     _table->SetField(_snake->GetTrailPosition(), FieldType::EMPTY);
+    _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
     _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
 }
 
@@ -94,7 +101,6 @@ void Game::AddFoodToTable() {
     _table->SetField(_food->GetPosition(), FieldType::FOOD);
 }
 
-//TODO: Why can't I use using system_clock::now ... ?
 unsigned int Game::GetRandomNumber(unsigned int min, unsigned int max) const {
    static thread_local mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
    uniform_int_distribution<int> distribution(min, max);

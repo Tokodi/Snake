@@ -15,12 +15,12 @@ Snake::Snake(int startPosX, int startPosY)
     Initialize(startPosX, startPosY);
 }
 
-void Snake::ChangeDirection(Direction direction) {
+void Snake::ChangeDirection(Direction newDirection) {
     if (!_isAlive)
         return;
 
-    if (static_cast<int>(_currentDirection) + static_cast<int>(direction) != 3) {
-        _currentDirection = direction;
+    if (static_cast<int>(_currentDirection) + static_cast<int>(newDirection) != 3) {
+        _currentDirection = newDirection;
     }
 }
 
@@ -57,7 +57,7 @@ void Snake::Grow() {
     if (!_isAlive)
         return;
 
-    _body.push_back(_body.back());
+    _body.push_front(_body.front());
 }
 
 const Position& Snake::GetHeadPosition() const {
@@ -77,8 +77,6 @@ bool Snake::IsAlive() const {
 }
 
 void Snake::DebugPrint() const {
-    std::cout << "Front: (" << _body.front().first << ", " << _body.front().second << ")" << std::endl;
-    std::cout << "Back: (" << _body.back().first << ", " << _body.back().second << ")" << std::endl;
     for (auto const& bodyPart : _body) {
         std::cout << "(" << bodyPart.first << ", " << bodyPart.second << ") ";
     }

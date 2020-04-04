@@ -77,7 +77,7 @@ TEST_F(SnakeTestFixture, testSnakeGrownment) {
     testSnake->Move();
 
     ASSERT_EQ(testSnake->GetHeadPosition(), Position(2, 0));
-    ASSERT_EQ(testSnake->GetTailPosition(), Position(0, 0));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(1, 0));
     ASSERT_EQ(testSnake->GetTrailPosition(), Position(0, 0));
 }
 

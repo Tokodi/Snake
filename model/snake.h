@@ -11,7 +11,7 @@ class Snake {
 public:
     Snake(int startPosX, int startPosY);
 
-    void ChangeDirection(Direction direction);
+    void ChangeDirection(Direction newDirection);
     void Move();
     void Grow();
 

@@ -13,6 +13,7 @@ public:
 
     void Initialize(unsigned int tableWidth, unsigned int tableHeight);
     void GameLoop();
+    void ChangeSnakeDirection(Direction newDirection) const;
 
     bool IsGameOver() const;
     unsigned int GetScore() const;
@@ -35,8 +36,8 @@ private:
     std::unique_ptr<Table> _table;
     std::unique_ptr<Food> _food;
 
-    static constexpr unsigned int SNAKE_START_POS_X = 0;
-    static constexpr unsigned int SNAKE_START_POS_Y = 0;
+    static constexpr int SNAKE_START_POS_X = 0;
+    static constexpr int SNAKE_START_POS_Y = 0;
 };
 
 } // ns Model

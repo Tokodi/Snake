@@ -62,6 +62,7 @@ void Table::DebugPrint() const {
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl;
 }
 
 void Table::Initialize() {
