@@ -4,6 +4,8 @@
 
 using std::deque;
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 
@@ -17,7 +19,6 @@ void Snake::ChangeDirection(Direction direction) {
     if (!_isAlive)
         return;
 
-    //Magic, TODO: more readable solution maybe
     if (static_cast<int>(_currentDirection) + static_cast<int>(direction) != 3) {
         _currentDirection = direction;
     }
@@ -46,25 +47,17 @@ void Snake::Move() {
     _body.emplace_front(newHead);
     _trailPosition = _body.back();
     _body.pop_back();
+
+    if (IsSelfHarm()) {
+        _isAlive = false;
+    }
 }
 
 void Snake::Grow() {
     if (!_isAlive)
         return;
 
-    //Duplicate last element
     _body.push_back(_body.back());
-}
-
-bool Snake::IsSelfHarm() const {
-    //TODO: This could surely be done better...
-    int count = 0;
-    const Position& head = _body.front();
-    for (auto const& bodyPart : _body) {
-        if (bodyPart == head) ++count;
-    }
-
-    return count == 1 ? false : true;
 }
 
 const Position& Snake::GetHeadPosition() const {
@@ -93,9 +86,22 @@ void Snake::DebugPrint() const {
 }
 
 void Snake::Initialize(int startPosX, int startPosY) {
-    for (int i = 0; i < START_LENGTH; ++i) {
+    for (size_t i = 0; i < START_LENGTH; ++i) {
         _body.push_front(Position(startPosX + i, startPosY));
     }
+
+    _trailPosition = _body.back();
+}
+
+bool Snake::IsSelfHarm() const {
+    //TODO: This could surely be done better...
+    int count = 0;
+    const Position& head = _body.front();
+    for (auto const& bodyPart : _body) {
+        if (bodyPart == head) ++count;
+    }
+
+    return count == 1 ? false : true;
 }
 
 } // ns Model

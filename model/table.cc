@@ -8,59 +8,40 @@ using std::make_unique;
 using std::unique_ptr;
 using std::vector;
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 
-Table::Table(unsigned int height, unsigned int width)
-    : _height(height),
-      _width(width) {
+Table::Table(unsigned int width, unsigned int height)
+    : _width(width),
+      _height(height) {
     Initialize();
-}
-
-unsigned int Table::GetHeight() const {
-    return _height;
 }
 
 unsigned int Table::GetWidth() const {
     return _width;
 }
 
-bool Table::IsInside(const Position& position) const {
-    //TODO: Solve this mistery
-    std::cout << position.first << " " << position.second << " " << _width << " " << _height << std::endl;
-    if (position.first < 0) {
-        return false;
-    }
-
-    if (position.second < 0) {
-        return false;
-    }
-
-    if (position.first >= _width) {
-        return false;
-    }
-
-    if (position.second >= _height) {
-        return false;
-    }
-
-    return true;
-
-    //if ((0 <= position.first < _width) && (0 <= position.second < _height))
-    //    return true;
-
-    //std::cout << "WFT" << std::endl;
-    //return false;
+unsigned int Table::GetHeight() const {
+    return _height;
 }
 
-//TODO: handle exception when called
 void Table::SetField(Position position, FieldType fieldType) {
     _table->at(position.second)->at(position.first) = fieldType;
 }
 
-//TODO: handle exception when called
 FieldType Table::GetField(Position position) const {
     return _table->at(position.second)->at(position.first);
+}
+
+bool Table::IsInside(const Position& position) const {
+    if (static_cast<unsigned>(position.first) < _width) {
+        if (static_cast<unsigned>(position.second) < _height) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Table::DebugPrint() const {

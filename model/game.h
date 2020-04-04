@@ -11,14 +11,14 @@ class Game {
 public:
     Game();
 
-    void Initialize(unsigned int tableHeight, unsigned int tableWidth);
+    void Initialize(unsigned int tableWidth, unsigned int tableHeight);
     void GameLoop();
 
     bool IsGameOver() const;
     unsigned int GetScore() const;
 
 private:
-    void CreateGameTable(unsigned int height, unsigned int width);
+    void CreateGameTable(unsigned int width, unsigned int height);
     void CreateSnake();
     void PlaceSnakeOnTable();
     void UpdateSnakeOnTable();

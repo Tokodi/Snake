@@ -2,9 +2,6 @@
 
 #include <deque>
 
-using Position = std::pair<int, int>;
-using SnakeIterator = std::deque<Position>::const_iterator;
-
 namespace Snake {
 namespace Model {
 
@@ -18,25 +15,23 @@ public:
     void Move();
     void Grow();
 
-    bool IsSelfHarm() const;
-
-    const Position& GetHeadPosition() const;
-    const Position& GetTailPosition() const;
-    const Position& GetTrailPosition() const;
+    const std::pair<int, int>& GetHeadPosition() const;
+    const std::pair<int, int>& GetTailPosition() const;
+    const std::pair<int, int>& GetTrailPosition() const;
 
     bool IsAlive() const;
 
-    //TODO: remove
     void DebugPrint() const;
 
 private:
     void Initialize(int startPosX, int startPosY);
+    bool IsSelfHarm() const;
 
     Direction _currentDirection;
     bool _isAlive;
 
-    std::deque<Position> _body;
-    Position _trailPosition;
+    std::deque<std::pair<int, int>> _body;
+    std::pair<int, int> _trailPosition;
 
     static constexpr unsigned int START_LENGTH = 2;
     static constexpr Direction START_DIRECTION = Direction::RIGHT;

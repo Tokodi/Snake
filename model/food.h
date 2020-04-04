@@ -2,8 +2,6 @@
 
 #include <utility>
 
-using Position = std::pair<int, int>;
-
 namespace Snake {
 namespace Model {
 
@@ -11,10 +9,10 @@ class Food {
 public:
     Food(int posX, int posY);
 
-    const Position& GetPosition() const;
+    const std::pair<int, int>& GetPosition() const;
 
 private:
-    Position _position;
+    std::pair<int, int> _position;
 };
 
 } // ns Model

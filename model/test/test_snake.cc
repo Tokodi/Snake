@@ -5,11 +5,13 @@
 using std::make_unique;
 using std::unique_ptr;
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 
-static constexpr unsigned int TEST_SNAKE_START_POSITION_X = 0;
-static constexpr unsigned int TEST_SNAKE_START_POSITION_Y = 0;
+static constexpr int TEST_SNAKE_START_POSITION_X = 0;
+static constexpr int TEST_SNAKE_START_POSITION_Y = 0;
 
 class SnakeTestFixture : public ::testing::Test {
 protected:
@@ -23,64 +25,60 @@ protected:
     unique_ptr<Snake> testSnake;
 };
 
+TEST_F(SnakeTestFixture, testSnakeGetters) {
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(1, 0));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(0, 0));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(0, 0));
+}
+
 TEST_F(SnakeTestFixture, testSnakeInitialization) {
     EXPECT_EQ(testSnake->IsAlive(), true);
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 1);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 0);
 }
 
 TEST_F(SnakeTestFixture, testSnakeMovement) {
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 2);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 1);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 0);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(2, 0));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(1, 0));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(0, 0));
 
     testSnake->ChangeDirection(Direction::DOWN);
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 2);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 1);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 2);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 0);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(2, 1));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(2, 0));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(1, 0));
 
     testSnake->ChangeDirection(Direction::LEFT);
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 1);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 1);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 2);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 1);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(1, 1));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(2, 1));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(2, 0));
 
     testSnake->ChangeDirection(Direction::UP);
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 1);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 1);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 1);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(1, 0));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(1, 1));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(2, 1));
 
     //Shoudl not change direction
     testSnake->ChangeDirection(Direction::DOWN);
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 1);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, -1);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 1);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 0);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(1, -1));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(1, 0));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(1, 1));
 }
 
 TEST_F(SnakeTestFixture, testSnakeGrownment) {
     testSnake->Grow();
     testSnake->Move();
 
-    EXPECT_EQ(testSnake->GetHeadPosition().first, 2);
-    EXPECT_EQ(testSnake->GetHeadPosition().second, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().first, 0);
-    EXPECT_EQ(testSnake->GetTailPosition().second, 0);
+    ASSERT_EQ(testSnake->GetHeadPosition(), Position(2, 0));
+    ASSERT_EQ(testSnake->GetTailPosition(), Position(0, 0));
+    ASSERT_EQ(testSnake->GetTrailPosition(), Position(0, 0));
 }
 
 } // ns Model

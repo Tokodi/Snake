@@ -6,30 +6,27 @@
 namespace Snake {
 namespace Model {
 
-using Position = std::pair<int, int>;
-
 enum class FieldType { EMPTY, SNAKE, FOOD };
 
 class Table {
 public:
-    Table(unsigned int height, unsigned int width);
+    Table(unsigned int width, unsigned int height);
 
-    unsigned int GetHeight() const;
     unsigned int GetWidth() const;
+    unsigned int GetHeight() const;
 
-    bool IsInside(const Position& position) const;
+    void SetField(std::pair<int, int> position, FieldType fieldType);
+    FieldType GetField(std::pair<int, int> position) const;
 
-    void SetField(Position position, FieldType fieldType);
-    FieldType GetField(Position position) const;
+    bool IsInside(const std::pair<int, int>& position) const;
 
-    //TODO: remove
     void DebugPrint() const;
 
 private:
     void Initialize();
 
-    const unsigned int _height;
     const unsigned int _width;
+    const unsigned int _height;
 
     std::unique_ptr<std::vector<std::unique_ptr<std::vector<FieldType>>>> _table;
 };

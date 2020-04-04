@@ -1,5 +1,7 @@
 #include "food.h"
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 

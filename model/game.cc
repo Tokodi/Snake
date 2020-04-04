@@ -17,11 +17,11 @@ Game::Game()
       _score(0) {
 }
 
-void Game::Initialize(unsigned int tableHeight, unsigned int tableWidth) {
+void Game::Initialize(unsigned int tableWidth, unsigned int tableHeight) {
     if (_isInitialized)
         return;
 
-    CreateGameTable(tableHeight, tableWidth);
+    CreateGameTable(tableWidth, tableHeight);
     CreateSnake();
     PlaceSnakeOnTable();
 
@@ -39,7 +39,7 @@ void Game::GameLoop() {
 
     _snake->Move();
 
-    if (_snake->IsSelfHarm() || !_table->IsInside(_snake->GetHeadPosition())) {
+    if (_snake->IsAlive() || !_table->IsInside(_snake->GetHeadPosition())) {
         _isGameOver = true;
         return;
     }
@@ -61,8 +61,8 @@ unsigned int Game::GetScore() const {
     return _score;
 }
 
-void Game::CreateGameTable(unsigned int height, unsigned int width) {
-    _table = make_unique<Table>(height, width);
+void Game::CreateGameTable(unsigned int width, unsigned int height) {
+    _table = make_unique<Table>(width, height);
 }
 
 void Game::CreateSnake() {
