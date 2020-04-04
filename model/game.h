@@ -26,6 +26,7 @@ private:
     void CreateFood();
     void AddFoodToTable();
 
+    const std::pair<int, int> GetRandomPosition() const;
     unsigned int GetRandomNumber(unsigned int min, unsigned int max) const;
 
     bool _isInitialized;

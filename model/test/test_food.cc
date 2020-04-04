@@ -16,7 +16,7 @@ static constexpr int TEST_FOOD_POSITION_Y = 42;
 class FoodTestFixture : public ::testing::Test {
 protected:
     void SetUp() override {
-        testFood = make_unique<Food>(TEST_FOOD_POSITION_X, TEST_FOOD_POSITION_Y);
+        testFood = make_unique<Food>(Position(TEST_FOOD_POSITION_X, TEST_FOOD_POSITION_Y));
     }
 
     void TearDown() override {

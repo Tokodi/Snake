@@ -7,7 +7,7 @@ namespace Model {
 
 class Food {
 public:
-    Food(int posX, int posY);
+    Food(std::pair<int, int> position);
 
     const std::pair<int, int>& GetPosition() const;
 

@@ -7,6 +7,8 @@ using std::make_unique;
 using std::mt19937;
 using std::uniform_int_distribution;
 
+using Position = std::pair<int, int>;
+
 namespace Snake {
 namespace Model {
 
@@ -92,13 +94,22 @@ void Game::UpdateSnakeOnTable() {
 }
 
 void Game::CreateFood() {
-    unsigned int posX = GetRandomNumber(0, _table->GetWidth() - 1);
-    unsigned int posY = GetRandomNumber(0, _table->GetHeight() - 1);
-    _food = make_unique<Food>(posX, posY);
+    Position randomFoodPosition;
+    do {
+        randomFoodPosition = GetRandomPosition();
+    } while (_table->GetField(randomFoodPosition) != FieldType::EMPTY);
+    _food = make_unique<Food>(randomFoodPosition);
 }
 
 void Game::AddFoodToTable() {
     _table->SetField(_food->GetPosition(), FieldType::FOOD);
+}
+
+const Position Game::GetRandomPosition() const {
+    unsigned int posX = GetRandomNumber(0, _table->GetWidth() - 1);
+    unsigned int posY = GetRandomNumber(0, _table->GetHeight() - 1);
+
+    return Position(posX, posY);
 }
 
 unsigned int Game::GetRandomNumber(unsigned int min, unsigned int max) const {

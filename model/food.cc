@@ -5,8 +5,8 @@ using Position = std::pair<int, int>;
 namespace Snake {
 namespace Model {
 
-Food::Food(int posX, int posY)
-    : _position(posX, posY) {
+Food::Food(Position position)
+    : _position(position) {
 }
 
 const Position& Food::GetPosition() const {
