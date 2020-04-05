@@ -12,7 +12,7 @@ public:
     Game();
 
     void Initialize(unsigned int tableWidth, unsigned int tableHeight);
-    void GameLoop();
+    void StepGame();
     void ChangeSnakeDirection(Direction newDirection) const;
 
     bool IsGameOver() const;

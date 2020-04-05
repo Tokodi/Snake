@@ -31,7 +31,7 @@ void Game::Initialize(unsigned int tableWidth, unsigned int tableHeight) {
     _isInitialized = true;
 }
 
-void Game::GameLoop() {
+void Game::StepGame() {
     if (_isGameOver || !_isInitialized)
         return;
 

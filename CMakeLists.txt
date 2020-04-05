@@ -13,6 +13,9 @@ add_executable(${PROJ_NAME} main.cc)
 
 target_link_libraries(${PROJ_NAME}
     model
+    ui
+    ui_common
 )
 
 add_subdirectory(model)
+add_subdirectory(ui)
