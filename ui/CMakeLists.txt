@@ -1,11 +1,15 @@
 set(LIB_NAME ui)
 
 add_library(${LIB_NAME} STATIC
+    ui_interface.cc
     utils.cc
 )
 
+#TODO: shrink model, only game is needed here...
+#TODO: rather rethink whole lib structure...
 target_link_libraries(${LIB_NAME}
     ncurses
+    model
     ui_common
 )
 
