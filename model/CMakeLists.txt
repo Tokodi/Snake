@@ -11,7 +11,7 @@ target_include_directories(${LIB_NAME}
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-find_package(GTest REQUIRED)
+find_package(GTest)
 
 if (${GTEST_FOUND})
 add_subdirectory(test)
