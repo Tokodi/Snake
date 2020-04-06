@@ -14,8 +14,7 @@ MenuWindow::MenuWindow(Position position,
                        unsigned int height)
     : Window(position,
              width,
-             height),
-      _currentStatus(StatusType::NONE) {
+             height) {
     CreateButtons();
 }
 
