@@ -13,11 +13,10 @@ int main() {
     Snake::UI::UINcurses ui(gameModel, 0, 0);
 
     while (!gameModel->IsGameOver()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        ui.Draw();
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        gameModel->StepGame();
         ui.HandleInput();
+        ui.Draw();
+        gameModel->StepGame();
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
     Snake::UI::Utils::Terminate();

@@ -13,7 +13,7 @@ public:
               unsigned int width,
               unsigned int height);
 
-    ~UIElement();
+    virtual ~UIElement();
 
     virtual void Show() = 0;
     void Refresh();
