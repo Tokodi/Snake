@@ -8,19 +8,19 @@ UIInterface::UIInterface(unsigned int width,
     _gameModel.Initialize(width, height);
 }
 
-void UIInterface::handle_left_key() {
+void UIInterface::HandleLeftKey() {
     _gameModel.ChangeSnakeDirection(Model::Direction::LEFT);
 }
 
-void UIInterface::handle_right_key() {
+void UIInterface::HandleRightKey() {
     _gameModel.ChangeSnakeDirection(Model::Direction::RIGHT);
 }
 
-void UIInterface::handle_up_key() {
+void UIInterface::HandleUpKey() {
     _gameModel.ChangeSnakeDirection(Model::Direction::UP);
 }
 
-void UIInterface::handle_down_key() {
+void UIInterface::HandleDownKey() {
     _gameModel.ChangeSnakeDirection(Model::Direction::DOWN);
 }
 

@@ -15,6 +15,12 @@ public:
     void StepGame();
     void ChangeSnakeDirection(Direction newDirection) const;
 
+    //TODO: Unit Test
+    unsigned int GetTableWidth();
+    unsigned int GetTableHeight();
+
+    FieldType GetTableField(std::pair<int, int> position);
+
     bool IsGameOver() const;
     unsigned int GetScore() const;
 

@@ -28,6 +28,9 @@ void Game::Initialize(unsigned int tableWidth, unsigned int tableHeight) {
     CreateSnake();
     PlaceSnakeOnTable();
 
+    CreateFood();
+    AddFoodToTable();
+
     _isInitialized = true;
 }
 
@@ -64,6 +67,18 @@ void Game::ChangeSnakeDirection(Direction newDirection) const {
         return;
 
     _snake->ChangeDirection(newDirection);
+}
+
+unsigned int Game::GetTableWidth() {
+    return _table->GetWidth();
+}
+
+unsigned int Game::GetTableHeight() {
+    return _table->GetHeight();
+}
+
+FieldType Game::GetTableField(std::pair<int, int> position) {
+    return _table->GetField(position);
 }
 
 bool Game::IsGameOver() const {

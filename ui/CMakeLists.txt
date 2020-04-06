@@ -2,6 +2,7 @@ set(LIB_NAME ui)
 
 add_library(${LIB_NAME} STATIC
     ui_interface.cc
+    ui_ncurses.cc
     utils.cc
 )
 
