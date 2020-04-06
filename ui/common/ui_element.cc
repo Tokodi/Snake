@@ -11,9 +11,9 @@ UIElement::UIElement(Position position,
                      unsigned int height)
     : _position(position),
       _width(width),
-      _height(height) {
+      _height(height),
+      _isVisible(false) {
     _win = newwin(_height, _width, _position.second, _position.first);
-    Initialize();
 }
 
 UIElement::~UIElement() {
@@ -25,11 +25,6 @@ void UIElement::Refresh() {
     if (!_win)
         return;
 
-    box(_win, 0, 0);
-    wrefresh(_win);
-}
-
-void UIElement::Initialize() {
     box(_win, 0, 0);
     wrefresh(_win);
 }

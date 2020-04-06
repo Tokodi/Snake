@@ -16,6 +16,14 @@ Window::Window(Position position,
                 height) {
 }
 
+void Window::Show() {
+    if (!_win || _isVisible)
+        return;
+
+    Refresh();
+    _isVisible = true;
+}
+
 void Window::DrawPixel(Position position, int colorIndex) {
     if (!_win)
         return;

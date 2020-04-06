@@ -15,11 +15,23 @@ Button::Button(Position position,
                 BUTTON_HEIGHT),
       _text(text),
       _isInFocus(false) {
-    //TODO print text
+}
+
+void Button::Show() {
+    if (!_win || _isVisible)
+        return;
+
+    int center = _width/2 - _text.length()/2;
+    mvwprintw(_win, 1, center, _text.c_str());
+
+    box(_win, 0, 0);
+    wrefresh(_win);
+
+    _isVisible = true;
 }
 
 void Button::ToggleFocus() {
-    if (!_win)
+    if (!_win || !_isVisible)
         return;
 
     if (_isInFocus) {

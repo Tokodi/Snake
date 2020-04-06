@@ -15,6 +15,7 @@ public:
 
     ~UIElement();
 
+    virtual void Show() = 0;
     void Refresh();
 
 protected:
@@ -25,8 +26,7 @@ protected:
     const unsigned int _width;
     const unsigned int _height;
 
-private:
-    void Initialize();
+    bool _isVisible;
 };
 
 } // ns Common

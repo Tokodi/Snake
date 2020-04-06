@@ -13,6 +13,9 @@ public:
     Button(std::pair<int, int> position,
            std::string text);
 
+    //TODO: use final at more places
+    void Show() final;
+
     void ToggleFocus();
 
 private:
