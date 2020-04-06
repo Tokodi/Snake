@@ -1,27 +1,28 @@
 #include "ui_interface.h"
 
+using std::shared_ptr;
+
 namespace Snake {
 namespace UI {
 
-UIInterface::UIInterface(unsigned int width,
-                         unsigned int height) {
-    _gameModel.Initialize(width, height);
+UIInterface::UIInterface(shared_ptr<Model::Game> gameModelPtr)
+    : _gameModelPtr(gameModelPtr) {
 }
 
 void UIInterface::HandleLeftKey() {
-    _gameModel.ChangeSnakeDirection(Model::Direction::LEFT);
+    _gameModelPtr->ChangeSnakeDirection(Model::Direction::LEFT);
 }
 
 void UIInterface::HandleRightKey() {
-    _gameModel.ChangeSnakeDirection(Model::Direction::RIGHT);
+    _gameModelPtr->ChangeSnakeDirection(Model::Direction::RIGHT);
 }
 
 void UIInterface::HandleUpKey() {
-    _gameModel.ChangeSnakeDirection(Model::Direction::UP);
+    _gameModelPtr->ChangeSnakeDirection(Model::Direction::UP);
 }
 
 void UIInterface::HandleDownKey() {
-    _gameModel.ChangeSnakeDirection(Model::Direction::DOWN);
+    _gameModelPtr->ChangeSnakeDirection(Model::Direction::DOWN);
 }
 
 } // ns UI

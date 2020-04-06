@@ -25,6 +25,7 @@ void UIElement::Refresh() {
     if (!_win)
         return;
 
+    box(_win, 0, 0);
     wrefresh(_win);
 }
 

@@ -11,8 +11,9 @@ namespace UI {
 
 class UINcurses : public UIInterface {
 public:
-    UINcurses(unsigned int width,
-             unsigned int height);
+    UINcurses(std::shared_ptr<Model::Game> gameModelPtr,
+              int posX,
+              int posY);
 
     ~UINcurses() override;
 

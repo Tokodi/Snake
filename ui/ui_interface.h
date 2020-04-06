@@ -2,13 +2,14 @@
 
 #include "game.h"
 
+#include <memory>
+
 namespace Snake {
 namespace UI {
 
 class UIInterface {
 public:
-    UIInterface(unsigned int width,
-                unsigned int height);
+    UIInterface(std::shared_ptr<Model::Game> gameModelPtr);
 
     virtual ~UIInterface() = default;
 
@@ -22,7 +23,7 @@ protected:
     void HandleDownKey();
 
 protected:
-    Model::Game _gameModel;
+    std::shared_ptr<Model::Game> _gameModelPtr;
 };
 
 } // ns UI
