@@ -10,11 +10,6 @@ namespace Snake {
 namespace UI {
 namespace Utils {
 
-//TODO: Black not working? also white...
-static constexpr int COLOR_WHITE_IDX = 0;
-static constexpr int COLOR_GREEN_IDX = 1;
-static constexpr int COLOR_RED_IDX = 2;
-
 void Initialize() {
     initscr();
     cbreak();
@@ -31,7 +26,7 @@ void Initialize() {
     }
 
     start_color();
-    init_pair(COLOR_WHITE_IDX, COLOR_WHITE, COLOR_WHITE);
+    init_pair(COLOR_BLACK_IDX, COLOR_BLACK, COLOR_BLACK);
     init_pair(COLOR_RED_IDX, COLOR_RED, COLOR_RED);
     init_pair(COLOR_GREEN_IDX, COLOR_GREEN, COLOR_GREEN);
 }

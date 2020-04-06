@@ -25,13 +25,13 @@ void UINcurses::Draw() {
         for (unsigned int y = 0; y < _gameModel.GetTableHeight(); ++y) {
             switch(_gameModel.GetTableField(Position(x, y))) {
                 case Model::FieldType::EMPTY:
-                    _window->DrawPixel(Position(x + x + 1, y + 1), 0 /*Utils::COLOR_BLACK_IDX*/);
+                    _window->DrawPixel(Position(x + x + 1, y + 1), Utils::COLOR_BLACK_IDX);
                     break;
                 case Model::FieldType::SNAKE:
-                    _window->DrawPixel(Position(x + x + 1, y + 1), 1 /*Utils::COLOR_GREEN_IDX*/);
+                    _window->DrawPixel(Position(x + x + 1, y + 1), Utils::COLOR_GREEN_IDX);
                     break;
                 case Model::FieldType::FOOD:
-                    _window->DrawPixel(Position(x + x + 1, y + 1), 2 /*Utils::COLOR_RED_IDX*/);
+                    _window->DrawPixel(Position(x + x + 1, y + 1), Utils::COLOR_RED_IDX);
                     break;
             }
         }

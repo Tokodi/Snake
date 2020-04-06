@@ -59,7 +59,7 @@ void Game::StepGame() {
     UpdateSnakeOnTable();
 
     //TODO: Remove
-    _table->DebugPrint();
+    //_table->DebugPrint();
 }
 
 void Game::ChangeSnakeDirection(Direction newDirection) const {
