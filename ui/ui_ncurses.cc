@@ -18,10 +18,6 @@ UINcurses::UINcurses(shared_ptr<Model::Game> gameModelPtr,
     _window = make_unique<Common::Window>(Position(posX, posY), 2 * width + 2, height + 2);
 }
 
-UINcurses::~UINcurses() {
-    Utils::Terminate();
-}
-
 void UINcurses::Draw() {
     for (unsigned int x = 0; x < _gameModelPtr->GetTableWidth(); ++x) {
         for (unsigned int y = 0; y < _gameModelPtr->GetTableHeight(); ++y) {
