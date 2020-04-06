@@ -10,6 +10,7 @@ namespace UI {
 class UIInterface {
 public:
     UIInterface(std::shared_ptr<Model::Game> gameModelPtr);
+    virtual ~UIInterface() = default;
 
     virtual void Draw() = 0;
     virtual void HandleInput() = 0;

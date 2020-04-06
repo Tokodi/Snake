@@ -15,6 +15,8 @@ public:
               int posX,
               int posY);
 
+    ~UINcurses() final {};
+
     void Draw() override;
     void HandleInput() override;
 
