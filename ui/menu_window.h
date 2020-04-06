@@ -25,8 +25,6 @@ private:
     void CreateButtons();
     void FocusNextButton();
 
-    StatusType _currentStatus;
-
     std::vector<std::pair<StatusType, std::shared_ptr<Common::Button>>> _buttons;
     std::vector<std::pair<StatusType, std::shared_ptr<Common::Button>>>::const_iterator _currentButton;
 };
