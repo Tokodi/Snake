@@ -18,10 +18,10 @@ public:
 
     void ToggleFocus();
 
-private:
     static constexpr int BUTTON_WIDTH = 20;
     static constexpr int BUTTON_HEIGHT = 3;
 
+private:
     const std::string _text;
     bool _isInFocus;
 };

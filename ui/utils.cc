@@ -29,6 +29,7 @@ void Initialize() {
     init_pair(COLOR_BLACK_IDX, COLOR_BLACK, COLOR_BLACK);
     init_pair(COLOR_RED_IDX, COLOR_RED, COLOR_RED);
     init_pair(COLOR_GREEN_IDX, COLOR_GREEN, COLOR_GREEN);
+    init_pair(COLOR_BLINK_IDX, COLOR_WHITE, COLOR_BLACK);
 }
 
 void Terminate() {

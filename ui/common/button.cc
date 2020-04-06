@@ -24,8 +24,7 @@ void Button::Show() {
     int center = _width/2 - _text.length()/2;
     mvwprintw(_win, 1, center, _text.c_str());
 
-    box(_win, 0, 0);
-    wrefresh(_win);
+    Refresh();
 
     _isVisible = true;
 }
@@ -35,10 +34,10 @@ void Button::ToggleFocus() {
         return;
 
     if (_isInFocus) {
-        mvwchgat(_win, 1, 1, _width - 2, A_NORMAL, 1, NULL);
+        mvwchgat(_win, 1, 1, _width - 2, A_NORMAL, 4, NULL);
         _isInFocus = false;
     } else {
-        mvwchgat(_win, 1, 1, _width - 2, A_BLINK, 1, NULL);
+        mvwchgat(_win, 1, 1, _width - 2, A_BLINK, 4, NULL);
         _isInFocus = true;
     }
 
