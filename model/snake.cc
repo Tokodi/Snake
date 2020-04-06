@@ -9,10 +9,10 @@ using Position = std::pair<int, int>;
 namespace Snake {
 namespace Model {
 
-Snake::Snake(int startPosX, int startPosY)
+Snake::Snake(Position position)
     : _currentDirection(START_DIRECTION),
       _isAlive(true) {
-    Initialize(startPosX, startPosY);
+    Initialize(position);
 }
 
 void Snake::ChangeDirection(Direction newDirection) {
@@ -83,11 +83,8 @@ void Snake::DebugPrint() const {
     std::cout << std::endl;
 }
 
-void Snake::Initialize(int startPosX, int startPosY) {
-    for (size_t i = 0; i < START_LENGTH; ++i) {
-        _body.push_front(Position(startPosX + i, startPosY));
-    }
-
+void Snake::Initialize(Position position) {
+    _body.push_front(position);
     _trailPosition = _body.back();
 }
 

@@ -9,7 +9,7 @@ enum class Direction { UP, LEFT, RIGHT, DOWN };
 
 class Snake {
 public:
-    Snake(int startPosX, int startPosY);
+    Snake(std::pair<int, int> position);
 
     void ChangeDirection(Direction newDirection);
     void Move();
@@ -24,7 +24,7 @@ public:
     void DebugPrint() const;
 
 private:
-    void Initialize(int startPosX, int startPosY);
+    void Initialize(std::pair<int, int> position);
     bool IsSelfHarm() const;
 
     Direction _currentDirection;
@@ -33,7 +33,6 @@ private:
     std::deque<std::pair<int, int>> _body;
     std::pair<int, int> _trailPosition;
 
-    static constexpr unsigned int START_LENGTH = 2;
     static constexpr Direction START_DIRECTION = Direction::RIGHT;
 };
 

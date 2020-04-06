@@ -94,7 +94,7 @@ void Game::CreateGameTable(unsigned int width, unsigned int height) {
 }
 
 void Game::CreateSnake() {
-    _snake = make_unique<Snake>(SNAKE_START_POS_X, SNAKE_START_POS_Y);
+    _snake = make_unique<Snake>(GetRandomPosition());
 }
 
 void Game::PlaceSnakeOnTable() {
