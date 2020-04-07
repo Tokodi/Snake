@@ -3,6 +3,7 @@ set(LIB_NAME ui_common)
 add_library(${LIB_NAME} STATIC
     button.cc
     ui_element.cc
+    input_field.cc
     window.cc
 )
 
