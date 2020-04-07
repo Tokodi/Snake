@@ -3,6 +3,7 @@
 #include "game.h"
 #include "view_ncurses.h"
 #include "game_controller.hpp"
+#include "notifyer.h"
 
 using namespace Snake;
 
@@ -11,6 +12,7 @@ using Position = std::pair<int, int>;
 int main() {
     UI::Initialize();
 
+    UI::Notifyer notifyer;
     UI::MenuWindow menuWindow;
     Controller::GameController<UI::NcursesView> gameController;
 
@@ -24,9 +26,11 @@ int main() {
         switch (currentStatus) {
             case UI::StatusType::START:
                 gameController.StartGame(40, 21);
+                notifyer.Notify("Game Over!", 2);
                 UI::Clear();
                 break;
             case UI::StatusType::SCORES:
+                notifyer.Notify("In progress...", 2);
                 break;
             case UI::StatusType::EXIT:
                 UI::Terminate();

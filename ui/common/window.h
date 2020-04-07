@@ -19,6 +19,7 @@ public:
 
     void DrawPixel(std::pair<int, int> position, int colorIndex);
     void PrintToCenter(std::string input, int row);
+    void Getch() const;
 };
 
 

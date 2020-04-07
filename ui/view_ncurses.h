@@ -16,7 +16,7 @@ public:
     unsigned int GetWidth() const final;
     unsigned int GetHeight() const final;
 
-    unsigned int GetUserInputBlocking() const final;
+    void GetUserRedyChar() const final;
     Direction GetUserInputNonBlocking() const final;
 
     void Draw(const std::shared_ptr<const Model::Table> table) final;

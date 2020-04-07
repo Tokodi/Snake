@@ -48,6 +48,10 @@ void Window::PrintToCenter(string input, int row) {
     Refresh();
 }
 
+void Window::Getch() const {
+    wgetch(_win);
+}
+
 } // ns Common
 } // ns UI
 } // ns Snake

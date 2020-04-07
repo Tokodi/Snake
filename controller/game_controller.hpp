@@ -32,6 +32,7 @@ void GameController<View>::StartGame(int width, int height) {
     _view->Show();
     _view->UpdateScore(_gameModel.GetScore());
     _view->Draw(_gameModel.GetTable());
+    _view->GetUserRedyChar();
 
     while (!_gameModel.IsGameOver()) {
         HandleUserInput(_view->GetUserInputNonBlocking());

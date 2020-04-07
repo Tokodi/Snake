@@ -27,9 +27,8 @@ unsigned int NcursesView::GetHeight() const {
     return _height;
 }
 
-unsigned int NcursesView::GetUserInputBlocking() const {
-    //TODO
-    return 0;
+void NcursesView::GetUserRedyChar() const {
+    _gameWindow->Getch();
 }
 
 Direction NcursesView::GetUserInputNonBlocking() const {

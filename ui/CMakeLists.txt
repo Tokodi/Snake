@@ -2,6 +2,7 @@ set(LIB_NAME ui)
 
 add_library(${LIB_NAME} STATIC
     menu_window.cc
+    notifyer.cc
     view_ncurses.cc
     utils.cc
 )
