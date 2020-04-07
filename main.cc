@@ -22,18 +22,15 @@ int main() {
 //        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 //    }
 
-//    Snake::UI::MainWindow mainWindow;
-//    mainWindow.Show();
+    Snake::UI::MainWindow mainWindow;
+    mainWindow.StartMenuLoop();
 
-    Snake::UI::MenuWindow menuWindow(std::make_pair<int, int>(0, 0), 35, 15);
-    menuWindow.Show();
-    if (menuWindow.GetUserInput() == Snake::UI::StatusType::EXIT) {
-        Snake::UI::Utils::Terminate();
-        return -1;
-    }
-
-    int ch;
-    std::cin >> ch;
+//    Snake::UI::MenuWindow menuWindow(std::make_pair<int, int>(0, 0), 35, 15);
+//    menuWindow.Show();
+//    if (menuWindow.GetUserInput() == Snake::UI::StatusType::EXIT) {
+//        Snake::UI::Utils::Terminate();
+//        return -1;
+//    }
 
     Snake::UI::Utils::Terminate();
 

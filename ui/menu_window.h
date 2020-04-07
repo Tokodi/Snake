@@ -9,7 +9,7 @@
 namespace Snake {
 namespace UI {
 
-enum class StatusType { NONE, START, SCORES, EXIT };
+enum class StatusType { START, SCORES, EXIT };
 
 class MenuWindow : public Common::Window {
 public:
