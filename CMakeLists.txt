@@ -15,7 +15,9 @@ target_link_libraries(${PROJ_NAME}
     model
     ui
     ui_common
+    controller
 )
 
 add_subdirectory(model)
+add_subdirectory(controller)
 add_subdirectory(ui)

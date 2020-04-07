@@ -3,7 +3,9 @@
 #include <chrono>
 #include <random>
 
+using std::shared_ptr;
 using std::make_unique;
+using std::make_shared;
 using std::mt19937;
 using std::uniform_int_distribution;
 
@@ -14,33 +16,27 @@ namespace Model {
 
 //TODO: Handle exceptions
 
-Game::Game()
-    : _isInitialized(false),
-      _isGameOver(false),
-      _score(0) {
+Game::Game() {
 }
 
-void Game::Initialize(unsigned int tableWidth, unsigned int tableHeight) {
-    if (_isInitialized)
-        return;
-
+void Game::NewGame(unsigned int tableWidth, unsigned int tableHeight) {
     CreateGameTable(tableWidth, tableHeight);
     CreateSnake();
     PlaceSnakeOnTable();
-
     CreateFood();
-    AddFoodToTable();
+    PlaceFoodOnTable();
 
-    _isInitialized = true;
+    _isGameOver = false;
+    _score = 0;
 }
 
 void Game::StepGame() {
-    if (_isGameOver || !_isInitialized)
+    if (_isGameOver)
         return;
 
     if (!_food) {
         CreateFood();
-        AddFoodToTable();
+        PlaceFoodOnTable();
     }
 
     _snake->Move();
@@ -69,6 +65,10 @@ void Game::ChangeSnakeDirection(Direction newDirection) const {
     _snake->ChangeDirection(newDirection);
 }
 
+const shared_ptr<const Table> Game::GetTable() const {
+    return _table;
+}
+
 unsigned int Game::GetTableWidth() {
     return _table->GetWidth();
 }
@@ -90,10 +90,12 @@ unsigned int Game::GetScore() const {
 }
 
 void Game::CreateGameTable(unsigned int width, unsigned int height) {
-    _table = make_unique<Table>(width, height);
+    _table.reset();
+    _table = make_shared<Table>(width, height);
 }
 
 void Game::CreateSnake() {
+    _snake.reset();
     _snake = make_unique<Snake>(GetRandomPosition());
 }
 
@@ -116,7 +118,7 @@ void Game::CreateFood() {
     _food = make_unique<Food>(randomFoodPosition);
 }
 
-void Game::AddFoodToTable() {
+void Game::PlaceFoodOnTable() {
     _table->SetField(_food->GetPosition(), FieldType::FOOD);
 }
 

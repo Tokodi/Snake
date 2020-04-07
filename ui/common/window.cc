@@ -28,7 +28,7 @@ void Window::Hide() {
     if (!_win || !_isVisible)
         return;
 
-    werase(_win);
+    wclear(_win);
     _isVisible = false;
 }
 
@@ -40,6 +40,12 @@ void Window::DrawPixel(Position position, int colorIndex) {
     mvwaddch(_win, position.second, position.first, 'X');
     mvwaddch(_win, position.second, position.first + 1, 'X');
     wattroff(_win, COLOR_PAIR(colorIndex));
+}
+
+void Window::PrintToCenter(string input, int row) {
+    int posX = _width/2 - input.length()/2;
+    mvwprintw(_win, row, posX, input.c_str());
+    Refresh();
 }
 
 } // ns Common

@@ -15,6 +15,9 @@ public:
     virtual void Draw() = 0;
     virtual void HandleInput() = 0;
 
+    virtual void GetWidth() = 0;
+    virtual void GetHeight() = 0;
+
 protected:
     void HandleLeftKey();
     void HandleRightKey();

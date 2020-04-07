@@ -8,7 +8,6 @@ using std::endl;
 
 namespace Snake {
 namespace UI {
-namespace Utils {
 
 void Initialize() {
     initscr();
@@ -36,6 +35,14 @@ void Terminate() {
     endwin();
 }
 
-} // ns Utils
+void Refresh() {
+    refresh();
+}
+
+void Clear() {
+    clear();
+    Refresh();
+}
+
 } // ns UI
 } // ns Snake

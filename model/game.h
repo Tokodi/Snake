@@ -11,11 +11,12 @@ class Game {
 public:
     Game();
 
-    void Initialize(unsigned int tableWidth, unsigned int tableHeight);
+    void NewGame(unsigned int tableWidth, unsigned int tableHeight);
     void StepGame();
     void ChangeSnakeDirection(Direction newDirection) const;
 
     //TODO: Unit Test
+    const std::shared_ptr<const Table> GetTable() const;
     unsigned int GetTableWidth();
     unsigned int GetTableHeight();
 
@@ -30,17 +31,16 @@ private:
     void PlaceSnakeOnTable();
     void UpdateSnakeOnTable();
     void CreateFood();
-    void AddFoodToTable();
+    void PlaceFoodOnTable();
 
     const std::pair<int, int> GetRandomPosition() const;
     unsigned int GetRandomNumber(unsigned int min, unsigned int max) const;
 
-    bool _isInitialized;
     bool _isGameOver;
     unsigned int _score;
 
     std::unique_ptr<Snake> _snake;
-    std::unique_ptr<Table> _table;
+    std::shared_ptr<Table> _table;
     std::unique_ptr<Food> _food;
 
     static constexpr int SNAKE_START_POS_X = 0;

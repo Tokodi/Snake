@@ -1,15 +1,51 @@
-#include "ui_ncurses.h"
-#include "game.h"
 #include "utils.h"
-#include "main_window.h"
 #include "menu_window.h"
+#include "game.h"
+#include "view_ncurses.h"
+#include "game_controller.hpp"
 
-#include <chrono>
-#include <thread>
-#include <iostream>
+using namespace Snake;
+
+using Position = std::pair<int, int>;
 
 int main() {
-    Snake::UI::Utils::Initialize();
+    UI::Initialize();
+
+    UI::MenuWindow menuWindow;
+    Controller::GameController<UI::NcursesView> gameController;
+
+    UI::StatusType currentStatus;
+    while (true) {
+        menuWindow.Show();
+        currentStatus = menuWindow.GetUserInput();
+        menuWindow.Hide();
+        UI::Clear();
+
+        switch (currentStatus) {
+            case UI::StatusType::START:
+                gameController.StartGame(40, 21);
+                UI::Clear();
+                break;
+            case UI::StatusType::SCORES:
+                break;
+            case UI::StatusType::EXIT:
+                UI::Terminate();
+                return 0;
+        }
+    }
+
+    return -1;
+
+
+
+
+
+
+
+
+
+
+
 //    std::shared_ptr<Snake::Model::Game> gameModel = std::make_shared<Snake::Model::Game>();
 //    gameModel->Initialize(40, 40);
 //
@@ -22,8 +58,8 @@ int main() {
 //        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 //    }
 
-    Snake::UI::MainWindow mainWindow;
-    mainWindow.StartMenuLoop();
+    //Snake::UI::MainWindow mainWindow;
+    //mainWindow.StartMenuLoop();
 
 //    Snake::UI::MenuWindow menuWindow(std::make_pair<int, int>(0, 0), 35, 15);
 //    menuWindow.Show();
@@ -32,7 +68,6 @@ int main() {
 //        return -1;
 //    }
 
-    Snake::UI::Utils::Terminate();
 
     return 0;
 }

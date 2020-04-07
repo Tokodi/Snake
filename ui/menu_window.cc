@@ -9,12 +9,10 @@ using Position = std::pair<int, int>;
 namespace Snake {
 namespace UI {
 
-MenuWindow::MenuWindow(Position position,
-                       unsigned int width,
-                       unsigned int height)
-    : Window(position,
-             width,
-             height) {
+MenuWindow::MenuWindow()
+    : Window(Position(COLS/2 - MENU_WIDHT/2, LINES/2 - MENU_HEIGHT/2),
+             MENU_WIDHT,
+             MENU_HEIGHT) {
     CreateButtons();
 }
 

@@ -1,10 +1,8 @@
 set(LIB_NAME ui)
 
 add_library(${LIB_NAME} STATIC
-    main_window.cc
     menu_window.cc
-    ui_interface.cc
-    ui_ncurses.cc
+    view_ncurses.cc
     utils.cc
 )
 

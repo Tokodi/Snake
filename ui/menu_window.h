@@ -13,9 +13,7 @@ enum class StatusType { START, SCORES, EXIT };
 
 class MenuWindow : public Common::Window {
 public:
-    MenuWindow(std::pair<int, int> position,
-               unsigned int width,
-               unsigned int height);
+    MenuWindow();
 
     void Show() override;
     void Hide() override;
@@ -23,6 +21,9 @@ public:
     StatusType GetUserInput();
 
 private:
+    static constexpr unsigned int MENU_WIDHT = 35;
+    static constexpr unsigned int MENU_HEIGHT = 15;
+
     void CreateButtons();
     void FocusNextButton();
 
