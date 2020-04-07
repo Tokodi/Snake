@@ -15,8 +15,9 @@ target_link_libraries(${PROJ_NAME}
     model
     ui
     ui_common
-    controller
 )
+
+include_directories(${PROJECT_SOURCE_DIR}/controller)
 
 add_subdirectory(model)
 add_subdirectory(controller)
