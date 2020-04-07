@@ -29,6 +29,15 @@ void Button::Show() {
     _isVisible = true;
 }
 
+void Button::Hide() {
+    if (!_win || !_isVisible)
+        return;
+
+    werase(_win);
+
+    _isVisible = false;
+}
+
 void Button::ToggleFocus() {
     if (!_win || !_isVisible)
         return;

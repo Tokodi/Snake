@@ -15,6 +15,7 @@ public:
            unsigned int height);
 
     void Show() override;
+    void Hide() override;
 
     void DrawPixel(std::pair<int, int> position, int colorIndex);
 };

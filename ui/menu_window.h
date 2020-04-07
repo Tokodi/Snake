@@ -18,6 +18,7 @@ public:
                unsigned int height);
 
     void Show() override;
+    void Hide() override;
 
     StatusType GetUserInput();
 

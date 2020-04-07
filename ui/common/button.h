@@ -15,6 +15,7 @@ public:
 
     //TODO: use final at more places
     void Show() final;
+    void Hide() final;
 
     void ToggleFocus();
 

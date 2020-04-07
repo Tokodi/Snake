@@ -16,6 +16,7 @@ public:
     virtual ~UIElement();
 
     virtual void Show() = 0;
+    virtual void Hide() = 0;
     void Refresh();
 
 protected:

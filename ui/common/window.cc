@@ -24,6 +24,14 @@ void Window::Show() {
     _isVisible = true;
 }
 
+void Window::Hide() {
+    if (!_win || !_isVisible)
+        return;
+
+    werase(_win);
+    _isVisible = false;
+}
+
 void Window::DrawPixel(Position position, int colorIndex) {
     if (!_win)
         return;

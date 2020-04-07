@@ -19,6 +19,7 @@ void MainWindow::StartMenuLoop() {
     while (true) {
         _menuWindow->Show();
         _currentStatus = _menuWindow->GetUserInput();
+        _menuWindow->Hide();
 
         switch (_currentStatus) {
             case StatusType::START:

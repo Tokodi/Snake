@@ -35,6 +35,21 @@ void MenuWindow::Show() {
     _isVisible = true;
 }
 
+void MenuWindow::Hide() {
+    if (!_win || !_isVisible)
+        return;
+
+    _currentButton->second->ToggleFocus();
+
+    for (auto const& button : _buttons) {
+        button.second->Hide();
+    }
+
+    werase(_win);
+
+    _isVisible = false;
+}
+
 StatusType MenuWindow::GetUserInput() {
     int ch;
     while ((ch = wgetch(_win)) != 10) {
