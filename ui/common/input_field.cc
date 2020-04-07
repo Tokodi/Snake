@@ -13,8 +13,7 @@ namespace Common {
 InputField::InputField(Position position, int width)
     : UIElement(position,
                 width,
-                INPUT_WINDOW_HEIGHT),
-      _isInFocus(false) {
+                INPUT_WINDOW_HEIGHT) {
     keypad(_win, TRUE);
 }
 

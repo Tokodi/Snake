@@ -20,9 +20,6 @@ public:
 private:
     void SetCursor();
     void UnSetCursor();
-
-private:
-    bool _isInFocus;
 };
 
 } // ns Common
