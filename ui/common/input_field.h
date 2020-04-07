@@ -8,14 +8,13 @@ namespace Common {
 
 class InputField : public UIElement {
 public:
-    InputField(std::pair<int, int> position);
+    InputField(std::pair<int, int> position, int width);
 
     void Show() final;
     void Hide() final;
 
     int GetPositiveNumber(const unsigned int maxDigits);
 
-    static constexpr int INPUT_WINDOW_WIDTH = 30;
     static constexpr int INPUT_WINDOW_HEIGHT = 3;
 
 private:

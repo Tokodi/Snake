@@ -1,6 +1,7 @@
 #include "input_field.h"
 
 #include <string>
+#include <iostream>
 
 using Position = std::pair<int, int>;
 using std::string;
@@ -9,11 +10,12 @@ namespace Snake {
 namespace UI {
 namespace Common {
 
-InputField::InputField(Position position)
+InputField::InputField(Position position, int width)
     : UIElement(position,
-                INPUT_WINDOW_WIDTH,
+                width,
                 INPUT_WINDOW_HEIGHT),
       _isInFocus(false) {
+    keypad(_win, TRUE);
 }
 
 void InputField::Show() {
@@ -39,8 +41,19 @@ int InputField::GetPositiveNumber(const unsigned int maxDigits) {
 
     string input;
     int ch;
+    int currentCharIndex = 1;
 
-    while (((ch = wgetch(_win)) != '\n') && (input.length() != maxDigits)) {
+    //TODO: ugly AF
+    while ((input.length() != maxDigits) && ((ch = wgetch(_win)) != '\n')) {
+        if (!std::isdigit(ch))
+            continue;
+
+        char chArray[2];
+        chArray[0] = (char)ch;
+        chArray[1] = '\0';
+        mvwprintw(_win, 1, currentCharIndex, chArray);
+        Refresh();
+        ++currentCharIndex;
         input.push_back(ch);
     }
 
@@ -50,13 +63,11 @@ int InputField::GetPositiveNumber(const unsigned int maxDigits) {
 }
 
 void InputField::SetCursor() {
-    echo();
     curs_set(1);
     wmove(_win, 1, 1);
 }
 
 void InputField::UnSetCursor() {
-    noecho();
     curs_set(0);
 }
 

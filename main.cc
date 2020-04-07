@@ -3,6 +3,7 @@
 #include "game.h"
 #include "view_ncurses.h"
 #include "game_controller.hpp"
+#include "size_getter_window.h"
 #include "notifyer.h"
 
 using namespace Snake;
@@ -14,6 +15,7 @@ int main() {
 
     UI::Notifyer notifyer;
     UI::MenuWindow menuWindow;
+    UI::SizeGetterWindow sizeGetterWindow;
     Controller::GameController<UI::NcursesView> gameController;
 
     UI::StatusType currentStatus;
@@ -23,9 +25,16 @@ int main() {
         menuWindow.Hide();
         UI::Clear();
 
+        int width;
+        int height;
         switch (currentStatus) {
             case UI::StatusType::START:
-                gameController.StartGame(40, 21);
+                sizeGetterWindow.Show();
+                width = sizeGetterWindow.GetTableWidth();
+                height = sizeGetterWindow.GetTableHeight();
+                sizeGetterWindow.Hide();
+                UI::Clear();
+                gameController.StartGame(width, height);
                 notifyer.Notify("Game Over!", 2);
                 UI::Clear();
                 break;

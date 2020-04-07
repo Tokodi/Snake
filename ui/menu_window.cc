@@ -23,6 +23,8 @@ void MenuWindow::Show() {
     //PrintTitle();
     Refresh();
 
+    PrintToCenter("S_N_A_K_E", 2);
+
     for (auto const& button : _buttons) {
         button.second->Show();
     }
