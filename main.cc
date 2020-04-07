@@ -32,6 +32,18 @@ int main() {
                 sizeGetterWindow.Show();
                 width = sizeGetterWindow.GetTableWidth();
                 height = sizeGetterWindow.GetTableHeight();
+                if (2 > width || 2 > height) {
+                    notifyer.Notify("Table too small", 2);
+                    sizeGetterWindow.Hide();
+                    UI::Clear();
+                    continue;
+                }
+                if (COLS < width || LINES < height /*+ UI::Scoreboard height*/) {
+                    notifyer.Notify("Table too large", 2);
+                    sizeGetterWindow.Hide();
+                    UI::Clear();
+                    continue;
+                }
                 sizeGetterWindow.Hide();
                 UI::Clear();
                 gameController.StartGame(width, height);

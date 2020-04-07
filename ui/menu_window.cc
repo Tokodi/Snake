@@ -53,6 +53,7 @@ void MenuWindow::Hide() {
 StatusType MenuWindow::GetUserInput() {
     int ch;
     while ((ch = wgetch(_win)) != 10) {
+        //TODO: keypad enable, and use arrows for next/prev
         if (ch == 9) // TODO: Get a working macro for this...
             FocusNextButton();
     }

@@ -14,6 +14,7 @@ Window::Window(Position position,
     : UIElement(position,
                 width,
                 height) {
+    keypad(_win, TRUE);
 }
 
 void Window::Show() {
@@ -48,8 +49,8 @@ void Window::PrintToCenter(string input, int row) {
     Refresh();
 }
 
-void Window::Getch() const {
-    wgetch(_win);
+int Window::Getch() const {
+    return wgetch(_win);
 }
 
 } // ns Common

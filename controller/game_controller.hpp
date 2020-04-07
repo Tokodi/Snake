@@ -17,6 +17,7 @@ public:
     void StartGame(int width, int height);
 
 private:
+    void SetStartDirection(const UI::Direction direction);
     void HandleUserInput(const UI::Direction direction);
 
 private:
@@ -32,7 +33,7 @@ void GameController<View>::StartGame(int width, int height) {
     _view->Show();
     _view->UpdateScore(_gameModel.GetScore());
     _view->Draw(_gameModel.GetTable());
-    _view->GetUserRedyChar();
+    SetStartDirection(_view->GetStartDirection());
 
     while (!_gameModel.IsGameOver()) {
         HandleUserInput(_view->GetUserInputNonBlocking());
@@ -44,6 +45,26 @@ void GameController<View>::StartGame(int width, int height) {
     }
 
     _view->Hide();
+}
+
+template <class View>
+void GameController<View>::SetStartDirection(UI::Direction direction) {
+    switch (direction) {
+        case UI::Direction::LEFT:
+            _gameModel.SetSnakeDirection(Model::Direction::LEFT);
+            break;
+        case UI::Direction::RIGHT:
+            _gameModel.SetSnakeDirection(Model::Direction::RIGHT);
+            break;
+        case UI::Direction::UP:
+            _gameModel.SetSnakeDirection(Model::Direction::UP);
+            break;
+        case UI::Direction::DOWN:
+            _gameModel.SetSnakeDirection(Model::Direction::DOWN);
+            break;
+        default:
+            break;
+    }
 }
 
 template <class View>

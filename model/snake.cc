@@ -15,6 +15,10 @@ Snake::Snake(Position position)
     Initialize(position);
 }
 
+void Snake::SetCurrentDirection(Direction direction) {
+    _currentDirection = direction;
+}
+
 void Snake::ChangeDirection(Direction newDirection) {
     if (!_isAlive)
         return;
@@ -58,6 +62,10 @@ void Snake::Grow() {
         return;
 
     _body.push_front(_body.front());
+}
+
+unsigned int Snake::GetLength() const {
+    return _body.size();
 }
 
 const Position& Snake::GetHeadPosition() const {

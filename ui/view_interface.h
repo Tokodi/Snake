@@ -12,7 +12,7 @@ public:
     virtual unsigned int GetWidth() const = 0;
     virtual unsigned int GetHeight() const = 0;
 
-    virtual void GetUserRedyChar() const = 0;
+    virtual Direction GetStartDirection() const = 0;
     virtual Direction GetUserInputNonBlocking() const = 0;
 
     virtual void Draw(const std::shared_ptr<const Model::Table> table) = 0;

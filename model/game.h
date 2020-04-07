@@ -14,6 +14,7 @@ public:
     void NewGame(unsigned int tableWidth, unsigned int tableHeight);
     void StepGame();
     void ChangeSnakeDirection(Direction newDirection) const;
+    void SetSnakeDirection(Direction direction) const;
 
     //TODO: Unit Test
     const std::shared_ptr<const Table> GetTable() const;

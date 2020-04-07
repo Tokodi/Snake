@@ -11,9 +11,12 @@ class Snake {
 public:
     Snake(std::pair<int, int> position);
 
+    void SetCurrentDirection(Direction direction);
     void ChangeDirection(Direction newDirection);
     void Move();
     void Grow();
+
+    unsigned int GetLength() const;
 
     const std::pair<int, int>& GetHeadPosition() const;
     const std::pair<int, int>& GetTailPosition() const;

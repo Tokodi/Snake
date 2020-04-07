@@ -20,19 +20,24 @@ Game::Game() {
 }
 
 void Game::NewGame(unsigned int tableWidth, unsigned int tableHeight) {
+    _isGameOver = false;
+    _score = 0;
+
     CreateGameTable(tableWidth, tableHeight);
     CreateSnake();
     PlaceSnakeOnTable();
     CreateFood();
     PlaceFoodOnTable();
-
-    _isGameOver = false;
-    _score = 0;
 }
 
 void Game::StepGame() {
     if (_isGameOver)
         return;
+
+    if (_snake->GetLength() == _table->GetWidth() * _table->GetHeight()) {
+        _isGameOver = true;
+        return;
+    }
 
     if (!_food) {
         CreateFood();
@@ -63,6 +68,10 @@ void Game::ChangeSnakeDirection(Direction newDirection) const {
         return;
 
     _snake->ChangeDirection(newDirection);
+}
+
+void Game::SetSnakeDirection(Direction direction) const {
+    _snake->SetCurrentDirection(direction);
 }
 
 const shared_ptr<const Table> Game::GetTable() const {

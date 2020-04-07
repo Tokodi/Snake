@@ -27,8 +27,31 @@ unsigned int NcursesView::GetHeight() const {
     return _height;
 }
 
-void NcursesView::GetUserRedyChar() const {
-    _gameWindow->Getch();
+Direction NcursesView::GetStartDirection() const {
+    int ch;
+    while (true) {
+        ch = _gameWindow->Getch();
+        switch (ch) {
+            case KEY_LEFT:
+                return Direction::LEFT;
+            case KEY_RIGHT:
+                return Direction::RIGHT;
+            case KEY_UP:
+                return Direction::UP;
+            case KEY_DOWN:
+                return Direction::DOWN;
+            case 'a':
+                return Direction::LEFT;
+            case 'd':
+                return Direction::RIGHT;
+            case 'w':
+                return Direction::UP;
+            case 's':
+                return Direction::DOWN;
+            default:
+                continue;
+        }
+    }
 }
 
 Direction NcursesView::GetUserInputNonBlocking() const {
