@@ -38,7 +38,7 @@ int main() {
                     UI::Clear();
                     continue;
                 }
-                if (COLS < width || LINES < height /*+ UI::Scoreboard height*/) {
+                if (COLS < width || LINES < height + static_cast<int>(UI::NcursesView::SCORE_WINDOW_HEIGHT)) {
                     notifyer.Notify("Table too large", 2);
                     sizeGetterWindow.Hide();
                     UI::Clear();

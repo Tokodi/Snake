@@ -1,7 +1,7 @@
 #pragma once
 
-#include "window.h"
 #include "button.h"
+#include "window.h"
 
 #include <memory>
 #include <vector>
@@ -11,19 +11,19 @@ namespace UI {
 
 enum class StatusType { START, SCORES, EXIT };
 
-class MenuWindow : public Common::Window {
+class MenuWindow final: public Common::Window {
 public:
     MenuWindow();
 
-    void Show() override;
-    void Hide() override;
+    void Show() final;
+    void Hide() final;
 
     StatusType GetUserInput();
 
-private:
     static constexpr unsigned int MENU_WIDHT = 35;
     static constexpr unsigned int MENU_HEIGHT = 15;
 
+private:
     void CreateButtons();
     void FocusNextButton();
     void FocusPrevButton();

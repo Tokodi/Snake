@@ -1,11 +1,13 @@
-#include "utils.h"
 #include "ncurses_game_view.h"
+#include "utils.h"
 
 #include <string>
 
-using std::string;
+using Snake::Model::Table;
 using Snake::UI::Common::Window;
 using std::make_unique;
+using std::shared_ptr;
+using std::string;
 
 using Position = std::pair<int, int>;
 
@@ -78,7 +80,7 @@ Direction NcursesView::GetUserInputNonBlocking() const {
     return Direction::NONE;
 }
 
-void NcursesView::Draw(const std::shared_ptr<const Model::Table> table) {
+void NcursesView::Draw(const shared_ptr<const Table> table) {
     for (unsigned int x = 0; x < table->GetWidth(); ++x) {
         for (unsigned int y = 0; y < table->GetHeight(); ++y) {
             switch(table->GetField(Position(x, y))) {

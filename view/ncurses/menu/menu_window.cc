@@ -1,8 +1,8 @@
 #include "menu_window.h"
 
+using std::make_pair;
 using std::make_shared;
 using std::shared_ptr;
-using std::make_pair;
 
 using Position = std::pair<int, int>;
 
@@ -21,7 +21,6 @@ void MenuWindow::Show() {
     if (!_win || _isVisible)
         return;
 
-    //PrintTitle();
     Refresh();
 
     PrintToCenter("S_N_A_K_E", 2);

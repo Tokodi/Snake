@@ -1,9 +1,9 @@
 #include "notifyer.h"
 #include "utils.h"
 
-#include <utility>
 #include <chrono>
 #include <thread>
+#include <utility>
 
 using Snake::UI::Common::Window;
 using std::make_unique;
@@ -17,7 +17,6 @@ namespace UI {
 Notifyer::Notifyer() {
 }
 
-//TODO: create center window, and ingerit from it...
 void Notifyer::Notify(string text, int durationInSec) {
     int posX = COLS/2 - NOTIFICATION_WINDOW_WIDTH/2;
     int posY = LINES/2 - NOTIFICATION_WINDOW_HEIGHT/2;

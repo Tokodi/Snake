@@ -4,8 +4,6 @@ using std::make_unique;
 
 using Position = std::pair<int, int>;
 
-//TODO: Add label...
-
 namespace Snake {
 namespace UI {
 

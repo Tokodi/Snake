@@ -14,10 +14,10 @@ public:
 
     void Notify(std::string text, int durationInSec);
 
-private:
     static constexpr unsigned int NOTIFICATION_WINDOW_WIDTH = 21;
     static constexpr unsigned int NOTIFICATION_WINDOW_HEIGHT = 7;
 
+private:
     std::unique_ptr<Common::Window> _window;
 };
 
