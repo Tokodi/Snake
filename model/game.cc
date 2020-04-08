@@ -60,6 +60,8 @@ void Game::StepGame() {
 
     if (!_snake->IsAlive() || !_table->IsInside(_snake->GetHeadPosition())) {
         _isRoundOver = true;
+        if (--_lifeCounter == 0)
+            _isGameOver = true;
         return;
     }
 
