@@ -11,10 +11,11 @@ class Snake {
 public:
     Snake(std::pair<int, int> position);
 
-    void SetCurrentDirection(Direction direction);
-    void ChangeDirection(Direction newDirection);
     void Move();
     void Grow();
+
+    void SetCurrentDirection(Direction direction);
+    void ChangeDirection(Direction direction);
 
     unsigned int GetLength() const;
 
@@ -30,13 +31,12 @@ private:
     void Initialize(std::pair<int, int> position);
     bool IsSelfHarm() const;
 
+private:
     Direction _currentDirection;
     bool _isAlive;
 
     std::deque<std::pair<int, int>> _body;
     std::pair<int, int> _trailPosition;
-
-    static constexpr Direction START_DIRECTION = Direction::RIGHT;
 };
 
 } // ns Model

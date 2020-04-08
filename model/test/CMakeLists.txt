@@ -2,6 +2,7 @@ set(TEST_NAME test_snake_model)
 
 add_executable(${TEST_NAME}
     test_food.cc
+    test_game.cc
     test_main.cc
     test_snake.cc
     test_table.cc
@@ -22,10 +23,9 @@ set_tests_properties(${TEST_NAME}
     LABELS "cpp"
 )
 
-#TODO: run after full build finished
 add_custom_command(
     TARGET ${TEST_NAME}
-    COMMENT "Unit testing model..."
+    COMMENT "Game model unit test"
     POST_BUILD
     COMMAND ${TEST_NAME}
 )

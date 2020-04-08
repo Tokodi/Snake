@@ -1,12 +1,16 @@
 #include "game.h"
 
 #include <chrono>
+#include <exception>
+#include <iostream>
 #include <random>
 
-using std::shared_ptr;
-using std::make_unique;
+using std::cerr;
+using std::exception;
 using std::make_shared;
+using std::make_unique;
 using std::mt19937;
+using std::shared_ptr;
 using std::uniform_int_distribution;
 
 using Position = std::pair<int, int>;
@@ -14,16 +18,24 @@ using Position = std::pair<int, int>;
 namespace Snake {
 namespace Model {
 
-//TODO: Handle exceptions
-
 Game::Game() {
 }
 
 void Game::NewGame(unsigned int tableWidth, unsigned int tableHeight) {
     _isGameOver = false;
+    _isRoundOver = true;
+    _lifeCounter = START_LIFE_COUNT;
     _score = 0;
 
     CreateGameTable(tableWidth, tableHeight);
+}
+
+void Game::NewRound() {
+    if (_isGameOver)
+        return;
+
+    _isRoundOver = false;
+    ClearTable();
     CreateSnake();
     PlaceSnakeOnTable();
     CreateFood();
@@ -31,11 +43,11 @@ void Game::NewGame(unsigned int tableWidth, unsigned int tableHeight) {
 }
 
 void Game::StepGame() {
-    if (_isGameOver)
+    if (_isRoundOver)
         return;
 
     if (_snake->GetLength() == _table->GetWidth() * _table->GetHeight()) {
-        _isGameOver = true;
+        _isRoundOver = true;
         return;
     }
 
@@ -47,7 +59,7 @@ void Game::StepGame() {
     _snake->Move();
 
     if (!_snake->IsAlive() || !_table->IsInside(_snake->GetHeadPosition())) {
-        _isGameOver = true;
+        _isRoundOver = true;
         return;
     }
 
@@ -58,9 +70,38 @@ void Game::StepGame() {
     }
 
     UpdateSnakeOnTable();
+}
 
-    //TODO: Remove
-    //_table->DebugPrint();
+unsigned int Game::GetLifeCounter() const {
+    return _lifeCounter;
+}
+
+unsigned int Game::GetScore() const {
+    return _score;
+}
+
+bool Game::IsGameOver() const {
+    return _isGameOver;
+}
+
+bool Game::IsRoundOver() const {
+    return _isRoundOver;
+}
+
+const shared_ptr<const Table> Game::GetTable() const {
+    return _table;
+}
+
+unsigned int Game::GetTableWidth() const {
+    return _table->GetWidth();
+}
+
+unsigned int Game::GetTableHeight() const {
+    return _table->GetHeight();
+}
+
+FieldType Game::GetTableField(std::pair<int, int> position) const {
+    return _table->GetField(position);
 }
 
 void Game::ChangeSnakeDirection(Direction newDirection) const {
@@ -74,33 +115,13 @@ void Game::SetSnakeDirection(Direction direction) const {
     _snake->SetCurrentDirection(direction);
 }
 
-const shared_ptr<const Table> Game::GetTable() const {
-    return _table;
-}
-
-unsigned int Game::GetTableWidth() {
-    return _table->GetWidth();
-}
-
-unsigned int Game::GetTableHeight() {
-    return _table->GetHeight();
-}
-
-FieldType Game::GetTableField(std::pair<int, int> position) {
-    return _table->GetField(position);
-}
-
-bool Game::IsGameOver() const {
-    return _isGameOver;
-}
-
-unsigned int Game::GetScore() const {
-    return _score;
-}
-
 void Game::CreateGameTable(unsigned int width, unsigned int height) {
     _table.reset();
     _table = make_shared<Table>(width, height);
+}
+
+void Game::ClearTable() {
+    _table->Clear();
 }
 
 void Game::CreateSnake() {
@@ -109,14 +130,22 @@ void Game::CreateSnake() {
 }
 
 void Game::PlaceSnakeOnTable() {
-    _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
-    _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
+    try {
+        _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
+        _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
+    } catch (exception& e) {
+        cerr << "[" << __func__ << "] Exception caught: " << e.what() << std::endl;
+    }
 }
 
 void Game::UpdateSnakeOnTable() {
-    _table->SetField(_snake->GetTrailPosition(), FieldType::EMPTY);
-    _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
-    _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
+    try {
+        _table->SetField(_snake->GetTrailPosition(), FieldType::EMPTY);
+        _table->SetField(_snake->GetTailPosition(), FieldType::SNAKE);
+        _table->SetField(_snake->GetHeadPosition(), FieldType::SNAKE);
+    } catch (exception& e) {
+        cerr << "[" << __func__ << "] Exception caught: " << e.what() << std::endl;
+    }
 }
 
 void Game::CreateFood() {
@@ -128,17 +157,21 @@ void Game::CreateFood() {
 }
 
 void Game::PlaceFoodOnTable() {
-    _table->SetField(_food->GetPosition(), FieldType::FOOD);
+    try {
+        _table->SetField(_food->GetPosition(), FieldType::FOOD);
+    } catch (exception& e) {
+        cerr << "[" << __func__ << "] Exception caught: " << e.what() << std::endl;
+    }
 }
 
-const Position Game::GetRandomPosition() const {
+Position Game::GetRandomPosition() const {
     unsigned int posX = GetRandomNumber(0, _table->GetWidth() - 1);
     unsigned int posY = GetRandomNumber(0, _table->GetHeight() - 1);
 
     return Position(posX, posY);
 }
 
-unsigned int Game::GetRandomNumber(unsigned int min, unsigned int max) const {
+int Game::GetRandomNumber(int min, int max) const {
    static thread_local mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
    uniform_int_distribution<int> distribution(min, max);
    return distribution(generator);

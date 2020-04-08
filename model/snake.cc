@@ -10,22 +10,8 @@ namespace Snake {
 namespace Model {
 
 Snake::Snake(Position position)
-    : _currentDirection(START_DIRECTION),
-      _isAlive(true) {
+    : _isAlive(true) {
     Initialize(position);
-}
-
-void Snake::SetCurrentDirection(Direction direction) {
-    _currentDirection = direction;
-}
-
-void Snake::ChangeDirection(Direction newDirection) {
-    if (!_isAlive)
-        return;
-
-    if (static_cast<int>(_currentDirection) + static_cast<int>(newDirection) != 3) {
-        _currentDirection = newDirection;
-    }
 }
 
 void Snake::Move() {
@@ -64,6 +50,20 @@ void Snake::Grow() {
     _body.push_front(_body.front());
 }
 
+void Snake::SetCurrentDirection(Direction direction) {
+    _currentDirection = direction;
+}
+
+void Snake::ChangeDirection(Direction newDirection) {
+    if (!_isAlive)
+        return;
+
+    //TODO:Magic
+    if (static_cast<int>(_currentDirection) + static_cast<int>(newDirection) != 3) {
+        _currentDirection = newDirection;
+    }
+}
+
 unsigned int Snake::GetLength() const {
     return _body.size();
 }
@@ -97,14 +97,13 @@ void Snake::Initialize(Position position) {
 }
 
 bool Snake::IsSelfHarm() const {
-    //TODO: This could surely be done better...
-    int count = 0;
+    int matchCounter = 0;
     const Position& head = _body.front();
     for (auto const& bodyPart : _body) {
-        if (bodyPart == head) ++count;
+        if (bodyPart == head)
+            ++matchCounter;
     }
-
-    return count == 1 ? false : true;
+    return matchCounter != 1;
 }
 
 } // ns Model

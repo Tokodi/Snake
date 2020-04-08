@@ -14,5 +14,5 @@ target_include_directories(${LIB_NAME}
 find_package(GTest)
 
 if (${GTEST_FOUND})
-add_subdirectory(test)
+    add_subdirectory(test)
 endif (${GTEST_FOUND})

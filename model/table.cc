@@ -13,10 +13,19 @@ using Position = std::pair<int, int>;
 namespace Snake {
 namespace Model {
 
-Table::Table(unsigned int width, unsigned int height)
+Table::Table(const unsigned int width,
+             const unsigned int height)
     : _width(width),
       _height(height) {
     Initialize();
+}
+
+void Table::Clear() {
+    for (auto& row : *_table) {
+        for (auto& field : *row) {
+            field = FieldType::EMPTY;
+        }
+    }
 }
 
 unsigned int Table::GetWidth() const {
@@ -27,15 +36,18 @@ unsigned int Table::GetHeight() const {
     return _height;
 }
 
+//Note: Might throw exception
 void Table::SetField(Position position, FieldType fieldType) {
     _table->at(position.second)->at(position.first) = fieldType;
 }
 
+//Note: Might throw exception
 FieldType Table::GetField(Position position) const {
     return _table->at(position.second)->at(position.first);
 }
 
-bool Table::IsInside(const Position& position) const {
+//TODO: Magic
+bool Table::IsInside(Position position) const {
     if (static_cast<unsigned>(position.first) < _width) {
         if (static_cast<unsigned>(position.second) < _height) {
             return true;

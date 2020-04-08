@@ -10,7 +10,9 @@ enum class FieldType { EMPTY, SNAKE, FOOD };
 
 class Table {
 public:
-    Table(unsigned int width, unsigned int height);
+    Table(const unsigned int width, const unsigned int height);
+
+    void Clear();
 
     unsigned int GetWidth() const;
     unsigned int GetHeight() const;
@@ -18,13 +20,14 @@ public:
     void SetField(std::pair<int, int> position, FieldType fieldType);
     FieldType GetField(std::pair<int, int> position) const;
 
-    bool IsInside(const std::pair<int, int>& position) const;
+    bool IsInside(std::pair<int, int> position) const;
 
     void DebugPrint() const;
 
 private:
     void Initialize();
 
+private:
     const unsigned int _width;
     const unsigned int _height;
 

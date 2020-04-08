@@ -12,7 +12,7 @@ public:
     const std::pair<int, int>& GetPosition() const;
 
 private:
-    std::pair<int, int> _position;
+    const std::pair<int, int> _position;
 };
 
 } // ns Model
