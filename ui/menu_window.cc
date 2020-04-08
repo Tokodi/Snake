@@ -14,6 +14,7 @@ MenuWindow::MenuWindow()
              MENU_WIDHT,
              MENU_HEIGHT) {
     CreateButtons();
+    keypad(_win, TRUE);
 }
 
 void MenuWindow::Show() {
@@ -53,9 +54,16 @@ void MenuWindow::Hide() {
 StatusType MenuWindow::GetUserInput() {
     int ch;
     while ((ch = wgetch(_win)) != 10) {
-        //TODO: keypad enable, and use arrows for next/prev
-        if (ch == 9) // TODO: Get a working macro for this...
-            FocusNextButton();
+	switch (ch) {
+	    case KEY_DOWN:
+		FocusNextButton();
+	        break;
+	    case KEY_UP:
+		FocusPrevButton();
+		break;
+	    default:
+		break;
+	}
     }
 
     return _currentButton->first;
@@ -87,6 +95,12 @@ void MenuWindow::FocusNextButton() {
     if (++_currentButton == _buttons.cend()) {
         _currentButton = _buttons.cbegin();
     }
+    _currentButton->second->ToggleFocus();
+}
+
+void MenuWindow::FocusPrevButton() {
+    _currentButton->second->ToggleFocus();
+    _currentButton == _buttons.cbegin() ? _currentButton = --_buttons.cend() : _currentButton = --_currentButton;
     _currentButton->second->ToggleFocus();
 }
 
