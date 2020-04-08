@@ -97,6 +97,11 @@ void NcursesView::Draw(const std::shared_ptr<const Model::Table> table) {
     _gameWindow->Refresh();
 }
 
+void NcursesView::UpdateLifeCount(int lifeCount) {
+    _lifeWindow->PrintToCenter("Lives:", 1);
+    _lifeWindow->PrintToCenter(std::to_string(lifeCount), 2);
+}
+
 void NcursesView::UpdateScore(int score) {
     _scoreWindow->PrintToCenter("Your Score:", 1);
     _scoreWindow->PrintToCenter(std::to_string(score), 2);
@@ -104,11 +109,13 @@ void NcursesView::UpdateScore(int score) {
 
 void NcursesView::Show() {
     _gameWindow->Show();
+    _lifeWindow->Show();
     _scoreWindow->Show();
 }
 
 void NcursesView::Hide() {
     _gameWindow->Hide();
+    _lifeWindow->Hide();
     _scoreWindow->Hide();
 }
 
@@ -117,7 +124,11 @@ void NcursesView::Initialize() {
     int posY = LINES/2 - _height/2 - 1;
     _gameWindow = make_unique<Window>(Position(posX, posY), 2 * _width + 2, _height + 2);
 
-    posX = COLS/2 - SCORE_WINDOW_WIDTH/2;
+    posX = COLS/2 - LIFE_WINDOW_WIDTH/2 - 2 - SCORE_WINDOW_WIDTH/2;
+    posY = LINES/2 - _height/2 - 1 - 1 - LIFE_WINDOW_HEIGHT;
+    _lifeWindow = make_unique<Window>(Position(posX, posY), LIFE_WINDOW_WIDTH, LIFE_WINDOW_HEIGHT);
+
+    posX = COLS/2 - SCORE_WINDOW_WIDTH/2 + 2 + LIFE_WINDOW_WIDTH/2;
     posY = LINES/2 - _height/2 - 1 - 1 - SCORE_WINDOW_HEIGHT;
     _scoreWindow = make_unique<Window>(Position(posX, posY), SCORE_WINDOW_WIDTH, SCORE_WINDOW_HEIGHT);
 }

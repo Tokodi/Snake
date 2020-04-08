@@ -29,6 +29,14 @@ void UIElement::Refresh() {
     wrefresh(_win);
 }
 
+unsigned int UIElement::GetWidth() const {
+    return _width;
+}
+
+unsigned int UIElement::GetHeight() const {
+    return _height;
+}
+
 } // ns Common
 } // ns UI
 } // ns Snake

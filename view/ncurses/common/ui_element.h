@@ -19,6 +19,9 @@ public:
     virtual void Hide() = 0;
     void Refresh();
 
+    unsigned int GetWidth() const;
+    unsigned int GetHeight() const;
+
 protected:
     WINDOW* _win;
 

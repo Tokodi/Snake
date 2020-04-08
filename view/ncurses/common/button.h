@@ -13,9 +13,10 @@ public:
     Button(std::pair<int, int> position,
            std::string text);
 
-    //TODO: use final at more places
-    void Show() final;
-    void Hide() final;
+    virtual ~Button() {}
+
+    void Show() override;
+    void Hide() override;
 
     void ToggleFocus();
 

@@ -16,6 +16,7 @@ public:
     virtual Direction GetUserInputNonBlocking() const = 0;
 
     virtual void Draw(const std::shared_ptr<const Model::Table> table) = 0;
+    virtual void UpdateLifeCount(int lifeCount) = 0;
     virtual void UpdateScore(int score) = 0;
 
     virtual void Show() = 0;

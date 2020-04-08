@@ -10,8 +10,8 @@ class InputField : public UIElement {
 public:
     InputField(std::pair<int, int> position, int width);
 
-    void Show() final;
-    void Hide() final;
+    void Show() override;
+    void Hide() override;
 
     int GetPositiveNumber(const unsigned int maxDigits);
 

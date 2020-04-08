@@ -34,7 +34,7 @@ void GameController<View>::StartGame(int width, int height) {
         _gameModel.NewRound();
         _view->Show();
         _view->UpdateScore(_gameModel.GetScore());
-        //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
+        _view->UpdateLifeCount(_gameModel.GetLifeCounter());
         _view->Draw(_gameModel.GetTable());
         SetStartDirection(_view->GetStartDirection());
         while (!_gameModel.IsRoundOver()) {
@@ -43,10 +43,9 @@ void GameController<View>::StartGame(int width, int height) {
             _view->UpdateScore(_gameModel.GetScore());
             _view->Draw(_gameModel.GetTable());
             _view->UpdateScore(_gameModel.GetScore());
-            //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
-        //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
+        _view->UpdateLifeCount(_gameModel.GetLifeCounter());
     }
     _view->Hide();
 }

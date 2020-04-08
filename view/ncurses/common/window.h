@@ -14,11 +14,14 @@ public:
            unsigned int width,
            unsigned int height);
 
+    virtual ~Window() {}
+
     void Show() override;
     void Hide() override;
 
     void DrawPixel(std::pair<int, int> position, int colorIndex);
     void PrintToCenter(std::string input, int row);
+
     int Getch() const;
 };
 
