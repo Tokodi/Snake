@@ -20,6 +20,13 @@ Ncurses is a created to write text-based user interfaces, and it comes pre-insta
 The project was built and tested on the latest Raspbian release with gcc version 8.3.0
 and MacOS Catalina(V10.15.3) with AppleClang 11.0.3;
 
+## Controls
+### Menu
+Navigate with the arrow keys, select with enter.
+
+### Game
+The first arro key hit will be the start diretion of the snake. Use the arrow keys to navigate.
+
 ## Known issues
     * ...
 
