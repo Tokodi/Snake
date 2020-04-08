@@ -25,7 +25,7 @@ and MacOS Catalina(V10.15.3) with AppleClang 11.0.3;
 Navigate with the arrow keys, select with enter.
 
 ### Game
-The first arro key hit will be the start diretion of the snake. Use the arrow keys to navigate.
+The first arrow key hit will be the start diretion of the snake. Use the arrow keys to navigate.
 
 ## Known issues
     * ...
