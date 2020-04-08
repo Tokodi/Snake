@@ -31,5 +31,6 @@ The first arrow key hit will be the start diretion of the snake. Use the arrow k
     * ...
 
 ## TODO
+    * Print "width" and "height" when asking for table size
     * Implement HighScore persistence in a modular way
     * Ncurses UI improvements
