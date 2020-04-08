@@ -7,16 +7,16 @@ To build the project, [CMake](https://cmake.org) needs to be installed.
 The game model is tested with unit tests, using the [GTest](https://github.com/google/googletest) framework.
 If CMake does not find the GTest library, unit test will not be built/ran;
 
-##Build & Run
+## Build & Run
     * mkdir build
     * cd build
     * cmake ..
     * make -j
     * ./Snake
 
-##Known issues
+## Known issues
     * ...
 
-##TODO
+## TODO
     * Implement HighScore persistence in a modular way
     * Ncurses UI improvements
