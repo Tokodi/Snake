@@ -1,5 +1,5 @@
 #include "utils.h"
-#include "view_ncurses.h"
+#include "ncurses_game_view.h"
 
 #include <string>
 

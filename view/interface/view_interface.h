@@ -5,7 +5,7 @@
 namespace Snake {
 namespace UI {
 
-enum class Direction { NONE, LEFT, RIGHT, UP, DOWN };
+enum class Direction;
 
 class ViewInterface {
 public:

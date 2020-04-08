@@ -1,9 +1,10 @@
-set(LIB_NAME ui_common)
+set(LIB_NAME ncurses_view_common)
 
 add_library(${LIB_NAME} STATIC
     button.cc
-    ui_element.cc
     input_field.cc
+    ui_element.cc
+    utils.cc
     window.cc
 )
 

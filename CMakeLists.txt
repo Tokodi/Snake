@@ -13,12 +13,14 @@ add_executable(${PROJ_NAME} main.cc)
 
 target_link_libraries(${PROJ_NAME}
     model
-    ui
-    ui_common
+    ncurses
+    ncurses_game_view
+    ncurses_menu
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/controller)
+include_directories(${PROJECT_SOURCE_DIR}/view/interface)
 
-add_subdirectory(model)
 add_subdirectory(controller)
-add_subdirectory(ui)
+add_subdirectory(model)
+add_subdirectory(view)

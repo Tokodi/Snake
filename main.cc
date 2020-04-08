@@ -1,10 +1,10 @@
-#include "utils.h"
-#include "menu_window.h"
 #include "game.h"
-#include "view_ncurses.h"
 #include "game_controller.hpp"
-#include "size_getter_window.h"
+#include "menu_window.h"
+#include "ncurses_game_view.h"
 #include "notifyer.h"
+#include "size_getter_window.h"
+#include "utils.h"
 
 using namespace Snake;
 
