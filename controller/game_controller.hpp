@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game.h"
-#include "view_interface.h"
 
 #include <chrono>
 #include <thread>
@@ -30,20 +29,24 @@ void GameController<View>::StartGame(int width, int height) {
     _view.reset();
     _view = std::make_shared<View>(width, height);
     _gameModel.NewGame(width, height);
-    _view->Show();
-    _view->UpdateScore(_gameModel.GetScore());
-    _view->Draw(_gameModel.GetTable());
-    SetStartDirection(_view->GetStartDirection());
-
     while (!_gameModel.IsGameOver()) {
-        HandleUserInput(_view->GetUserInputNonBlocking());
-        _gameModel.StepGame();
+        _gameModel.NewRound();
+        _view->Show();
         _view->UpdateScore(_gameModel.GetScore());
+        //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
         _view->Draw(_gameModel.GetTable());
-        _view->UpdateScore(_gameModel.GetScore());
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        SetStartDirection(_view->GetStartDirection());
+        while (!_gameModel.IsRoundOver()) {
+            HandleUserInput(_view->GetUserInputNonBlocking());
+            _gameModel.StepGame();
+            _view->UpdateScore(_gameModel.GetScore());
+            _view->Draw(_gameModel.GetTable());
+            _view->UpdateScore(_gameModel.GetScore());
+            //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+        //_view->UpdateLifeCounter(_gameModel.GetLifeCounter());
     }
-
     _view->Hide();
 }
 
