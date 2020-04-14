@@ -8,6 +8,10 @@ add_library(${LIB_NAME} STATIC
     window.cc
 )
 
+target_link_libraries(${LIB_NAME}
+    ncurses
+)
+
 target_include_directories(${LIB_NAME}
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
 )
