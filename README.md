@@ -28,6 +28,7 @@ Navigate with the arrow keys, select with enter.
 The first arrow key hit will be the start diretion of the snake. Use the arrow keys to navigate.
 
 ![alt text](https://github.com/Tokodi/Snake/blob/master/images/menu.png)
+![alt text](https://github.com/Tokodi/Snake/blob/master/images/game.png)
 
 ## Known issues
     * ...
