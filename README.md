@@ -1,6 +1,6 @@
 # SNAKE
 Another version of the well known SNAKE game written in C++.
-The project aims to satisfy the principals of the mvc architecture.
+The project aims to satisfy the principles of the mvc architecture.
 
 ## Requirements
 To build the project, [CMake](https://cmake.org) V3.10 or later needs to be installed.
