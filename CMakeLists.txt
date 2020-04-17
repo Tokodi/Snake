@@ -9,7 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -Werror")
 
-add_executable(${PROJ_NAME} sdl_main.cc)
+#add_executable(${PROJ_NAME} sdl_main.cc)
+add_executable(${PROJ_NAME} ncurses_main.cc)
 
 target_link_libraries(${PROJ_NAME}
     file_persistence

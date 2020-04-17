@@ -67,16 +67,18 @@ Direction SDLView::GetUserInputNonBlocking() const {
 }
 
 void SDLView::Draw(const shared_ptr<const Table> table) {
-    for (unsigned int j = 0; j < table->GetWidth() + 2; ++j) {
-        DrawRectangle(j, 0, Model::FieldType::EMPTY);
-        DrawRectangle(j, table->GetHeight() + 1, Model::FieldType::EMPTY);
+    //TODO: Create a clear function in parent
+    Show();
+    for (unsigned int i = 0; i < table->GetWidth() + 2; ++i) {
+        DrawRectangle(i, 0, Model::FieldType::EMPTY);
+        DrawRectangle(i, table->GetHeight() + 1, Model::FieldType::EMPTY);
     }
 
     for (unsigned int x = 0; x < table->GetWidth(); ++x) {
         for (unsigned int y = 0; y < table->GetHeight(); ++y) {
             DrawRectangle(0, x + 1, Model::FieldType::EMPTY);
             if (table->GetField(Position(x, y)) != Model::FieldType::EMPTY) {
-                DrawRectangle(y + 1, x + 1, table->GetField(Position(x, y)));
+                DrawRectangle(x + 1, y + 1, table->GetField(Position(x, y)));
             }
             DrawRectangle(table->GetWidth() + 1, x + 1, Model::FieldType::EMPTY);
         }

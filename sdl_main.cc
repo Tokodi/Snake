@@ -14,6 +14,6 @@ using Position = std::pair<int, int>;
 
 int main() {
     Controller::GameController<UI::SDLView, Persistence::FilePersistence> gameController;
-    gameController.StartGame(40, 20);
+    gameController.StartGame(20, 20);
     return 0;
 }
