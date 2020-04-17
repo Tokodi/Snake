@@ -19,8 +19,10 @@ target_link_libraries(${PROJ_NAME}
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/controller)
+include_directories(${PROJECT_SOURCE_DIR}/persistence/interface)
 include_directories(${PROJECT_SOURCE_DIR}/view/interface)
 
 add_subdirectory(controller)
 add_subdirectory(model)
+add_subdirectory(persistence)
 add_subdirectory(view)
