@@ -1,21 +1,24 @@
 #include "file_persistence.h"
 
+using std::fstream;
+using std::string;
+
 namespace Snake {
 namespace Persistence {
 
-FilePersistence::FilePersistence(std::string fileName)
-    : _fileName(fileName) {
-    _scoreFile.open(_fileName);
-}
+const string FilePersistence::_fileName = "scores.dat";
 
+FilePersistence::FilePersistence() {
+    _scoreFile.open(_fileName, fstream::out);
+}
 
 FilePersistence::~FilePersistence() {
     _scoreFile.close();
 }
 
-void FilePersistence::SaveScore(std::string name, unsigned int score) {
+void FilePersistence::SaveScore(string name, unsigned int score) {
     Score scoreQ(name, score);
-    _scoreFile << scoreQ << std::endl;
+    _scoreFile << scoreQ;
 }
 
 } // ns Persistence

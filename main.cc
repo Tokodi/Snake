@@ -1,3 +1,4 @@
+#include "file_persistence.h"
 #include "game.h"
 #include "game_controller.hpp"
 #include "menu_window.h"
@@ -16,7 +17,7 @@ int main() {
     UI::Notifyer notifyer;
     UI::MenuWindow menuWindow;
     UI::SizeGetterWindow sizeGetterWindow;
-    Controller::GameController<UI::NcursesView> gameController;
+    Controller::GameController<UI::NcursesView, Persistence::FilePersistence> gameController;
 
     UI::StatusType currentStatus;
     while (true) {

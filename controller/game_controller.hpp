@@ -9,7 +9,7 @@
 namespace Snake {
 namespace Controller {
 
-template <class View>
+template <class View, class Persistence>
 class GameController {
 public:
     GameController() {};
@@ -21,12 +21,16 @@ private:
     void HandleUserInput(const UI::Direction direction);
 
 private:
-    std::shared_ptr<View> _view;
+    //TODO: set username accordingly
+    std::string _userName = "Test User";
+
     Model::Game _gameModel;
+    Persistence _persistence;
+    std::shared_ptr<View> _view;
 };
 
-template <class View>
-void GameController<View>::StartGame(int width, int height) {
+template <class View, class Persistence>
+void GameController<View, Persistence>::StartGame(int width, int height) {
     _view.reset();
     _view = std::make_shared<View>(width, height);
     _gameModel.NewGame(width, height);
@@ -47,11 +51,12 @@ void GameController<View>::StartGame(int width, int height) {
         }
         _view->UpdateLifeCount(_gameModel.GetLifeCounter());
     }
+    _persistence.SaveScore(_userName, _gameModel.GetScore());
     _view->Hide();
 }
 
-template <class View>
-void GameController<View>::SetStartDirection(UI::Direction direction) {
+template <class View, class Persistence>
+void GameController<View, Persistence>::SetStartDirection(UI::Direction direction) {
     switch (direction) {
         case UI::Direction::LEFT:
             _gameModel.SetSnakeDirection(Model::Direction::LEFT);
@@ -70,8 +75,8 @@ void GameController<View>::SetStartDirection(UI::Direction direction) {
     }
 }
 
-template <class View>
-void GameController<View>::HandleUserInput(UI::Direction direction) {
+template <class View, class Persistence>
+void GameController<View, Persistence>::HandleUserInput(UI::Direction direction) {
     switch (direction) {
         case UI::Direction::LEFT:
             _gameModel.ChangeSnakeDirection(Model::Direction::LEFT);
