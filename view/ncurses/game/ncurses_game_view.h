@@ -13,9 +13,6 @@ public:
     NcursesView(unsigned int width,
                 unsigned int height);
 
-    unsigned int GetWidth() const final;
-    unsigned int GetHeight() const final;
-
     Direction GetStartDirection() const final;
     Direction GetUserInputNonBlocking() const final;
 
@@ -36,9 +33,6 @@ private:
     void Initialize();
 
 private:
-    const unsigned int _width;
-    const unsigned int _height;
-
     std::unique_ptr<Common::Window> _gameWindow;
     std::unique_ptr<Common::Window> _lifeWindow;
     std::unique_ptr<Common::Window> _scoreWindow;

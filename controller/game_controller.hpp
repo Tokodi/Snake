@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game.h"
-#include "utils.h"
+#include "common_utils.h"
 
 #include <chrono>
 #include <thread>
@@ -17,8 +17,8 @@ public:
     void StartGame(int width, int height);
 
 private:
-    void SetStartDirection(const UI::Direction direction);
-    void HandleUserInput(const UI::Direction direction);
+    void SetStartDirection(const Direction direction);
+    void HandleUserInput(const Direction direction);
 
 private:
     //TODO: set username accordingly
@@ -56,18 +56,18 @@ void GameController<View, Persistence>::StartGame(int width, int height) {
 }
 
 template <class View, class Persistence>
-void GameController<View, Persistence>::SetStartDirection(UI::Direction direction) {
+void GameController<View, Persistence>::SetStartDirection(Direction direction) {
     switch (direction) {
-        case UI::Direction::LEFT:
+        case Direction::LEFT:
             _gameModel.SetSnakeDirection(Model::Direction::LEFT);
             break;
-        case UI::Direction::RIGHT:
+        case Direction::RIGHT:
             _gameModel.SetSnakeDirection(Model::Direction::RIGHT);
             break;
-        case UI::Direction::UP:
+        case Direction::UP:
             _gameModel.SetSnakeDirection(Model::Direction::UP);
             break;
-        case UI::Direction::DOWN:
+        case Direction::DOWN:
             _gameModel.SetSnakeDirection(Model::Direction::DOWN);
             break;
         default:
@@ -76,18 +76,18 @@ void GameController<View, Persistence>::SetStartDirection(UI::Direction directio
 }
 
 template <class View, class Persistence>
-void GameController<View, Persistence>::HandleUserInput(UI::Direction direction) {
+void GameController<View, Persistence>::HandleUserInput(Direction direction) {
     switch (direction) {
-        case UI::Direction::LEFT:
+        case Direction::LEFT:
             _gameModel.ChangeSnakeDirection(Model::Direction::LEFT);
             break;
-        case UI::Direction::RIGHT:
+        case Direction::RIGHT:
             _gameModel.ChangeSnakeDirection(Model::Direction::RIGHT);
             break;
-        case UI::Direction::UP:
+        case Direction::UP:
             _gameModel.ChangeSnakeDirection(Model::Direction::UP);
             break;
-        case UI::Direction::DOWN:
+        case Direction::DOWN:
             _gameModel.ChangeSnakeDirection(Model::Direction::DOWN);
             break;
         default:

@@ -1,16 +1,20 @@
 #pragma once
 
 #include "table.h"
+#include "common_utils.h"
 
 namespace Snake {
 namespace UI {
 
-enum class Direction;
-
 class ViewInterface {
 public:
-    virtual unsigned int GetWidth() const = 0;
-    virtual unsigned int GetHeight() const = 0;
+    ViewInterface(unsigned int width,
+                  unsigned int height)
+        : _width(width)
+        , _height(height) {};
+
+    unsigned int GetWidth() const { return _width; }
+    unsigned int GetHeight() const { return _height; }
 
     virtual Direction GetStartDirection() const = 0;
     virtual Direction GetUserInputNonBlocking() const = 0;
@@ -21,6 +25,10 @@ public:
 
     virtual void Show() = 0;
     virtual void Hide() = 0;
+
+protected:
+    const unsigned int _width;
+    const unsigned int _height;
 };
 
 } // ns UI

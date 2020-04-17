@@ -16,17 +16,8 @@ namespace UI {
 
 NcursesView::NcursesView(unsigned int width,
                          unsigned int height)
-    : _width(width),
-      _height(height) {
+    : ViewInterface(width, height) {
     Initialize();
-}
-
-unsigned int NcursesView::GetWidth() const {
-    return _width;
-}
-
-unsigned int NcursesView::GetHeight() const {
-    return _height;
 }
 
 Direction NcursesView::GetStartDirection() const {
@@ -83,7 +74,7 @@ Direction NcursesView::GetUserInputNonBlocking() const {
 void NcursesView::Draw(const shared_ptr<const Table> table) {
     for (unsigned int x = 0; x < table->GetWidth(); ++x) {
         for (unsigned int y = 0; y < table->GetHeight(); ++y) {
-            switch(table->GetField(Position(x, y))) {
+            switch (table->GetField(Position(x, y))) {
                 case Model::FieldType::EMPTY:
                     _gameWindow->DrawPixel(Position(x + x + 1, y + 1), COLOR_BLACK_IDX);
                     break;
