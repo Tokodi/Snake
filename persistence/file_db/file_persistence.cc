@@ -9,7 +9,7 @@ namespace Persistence {
 const string FilePersistence::_fileName = "scores.dat";
 
 FilePersistence::FilePersistence() {
-    _scoreFile.open(_fileName, fstream::out);
+    _scoreFile.open(_fileName, fstream::out | fstream::app);
 }
 
 FilePersistence::~FilePersistence() {
