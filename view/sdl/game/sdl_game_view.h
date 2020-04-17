@@ -23,8 +23,8 @@ public:
     void Show() final;
     void Hide() final;
 
-    static constexpr unsigned int WIDTH = 800;
-    static constexpr unsigned int HEIGHT = 600;
+    static constexpr unsigned int WIDTH = 440;
+    static constexpr unsigned int HEIGHT = 440;
 
 private:
     void Initialize();

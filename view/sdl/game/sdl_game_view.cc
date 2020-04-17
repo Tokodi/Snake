@@ -115,7 +115,7 @@ void SDLView::Initialize() {
 }
 
 void SDLView::DrawRectangle(const unsigned int x, const unsigned int y, Model::FieldType fieldType) {
-    static constexpr unsigned int RECT_SIZE = WIDTH / 40;
+    static constexpr unsigned int RECT_SIZE = 20;
     static constexpr unsigned int BORDER_SIZE = 1;
     static SDL_Rect rect;
     rect.x = x * RECT_SIZE + BORDER_SIZE;
