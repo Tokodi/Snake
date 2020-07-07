@@ -17,7 +17,7 @@ target_link_libraries(${PROJ_NAME}
     model
     ncurses
     ncurses_game_view
-    sdl_game_view
+    #sdl_game_view
     ncurses_menu
 )
 
