@@ -8,7 +8,7 @@
 namespace Snake {
 namespace Logging {
 
-static const std::string LOG_FILE_NAME = "snake_log.txt";
+static const std::string LOG_FILE_NAME = "log.txt";
 static std::ofstream logFile(LOG_FILE_NAME);
 
 enum LogType {INFO, WARNING, ERROR};

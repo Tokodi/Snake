@@ -5,14 +5,14 @@
 namespace Snake {
 namespace Persistence {
 
-class Score {
+class ScoreRecord {
 public:
-    Score(std::string name, unsigned int score);
+    ScoreRecord(std::string name, unsigned int score);
 
     std::string GetName() const;
     unsigned int GetScore() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Score& score);
+    friend std::ostream& operator<<(std::ostream& os, const ScoreRecord& score);
 
 private:
     const std::string _name;

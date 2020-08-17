@@ -1,7 +1,7 @@
 set(LIB_NAME persistence_common)
 
 add_library(${LIB_NAME} STATIC
-    score.cc
+    score_record.cc
 )
 
 target_include_directories(${LIB_NAME}

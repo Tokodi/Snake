@@ -21,8 +21,7 @@ private:
     void HandleUserInput(const Direction direction);
 
 private:
-    //TODO: set username accordingly
-    std::string _userName = "Test User";
+    std::string _userName = "User";
 
     Model::Game _gameModel;
     Persistence _persistence;

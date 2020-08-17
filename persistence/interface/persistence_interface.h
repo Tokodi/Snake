@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <score_record.h>
 
 namespace Snake {
 namespace Persistence {
@@ -8,8 +9,7 @@ namespace Persistence {
 class PersistenceInterface {
 public:
     virtual void SaveScore(std::string name, unsigned int score) = 0;
-    //virtual void unsigned int> GetScores() const = 0;
-    //virtual void GetNScores(unsigned int scoreCount) const = 0;
+    //virtual std::vector<ScoreRecord> GetNScores(unsigned int scoreCount) const = 0;
 };
 
 } // ns Persistence
